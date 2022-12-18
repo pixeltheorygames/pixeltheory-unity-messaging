@@ -1,0 +1,15 @@
+{
+    "name": "Pixeltheory.Messaging.Runtime",
+    "references": [
+        "Pixeltheory.Base.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

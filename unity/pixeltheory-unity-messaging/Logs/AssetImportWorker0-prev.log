@@ -1,0 +1,308 @@
+Unity Editor version:    2020.3.42f1 (7ade1201f527)
+Branch:                  2020.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 11.6.4 (Build 20G417)
+Darwin version:          20.6.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        16384 MB
+Using pre-set license
+Pro License: NO
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+49669
+Successfully changed project path to: /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging
+/Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 39.12 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.42f1 (7ade1201f527)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging/Assets
+GfxDevice: creating device client; threaded=0
+2022-12-15 21:09:50.280 Unity[3259:33596] LG HDR 4K preferred device: AMD Radeon Pro 560 (high power)
+2022-12-15 21:09:50.280 Unity[3259:33596] Metal devices available: 2
+2022-12-15 21:09:50.280 Unity[3259:33596] 0: AMD Radeon Pro 560 (high power)
+2022-12-15 21:09:50.280 Unity[3259:33596] 1: Intel(R) HD Graphics 630 (low power)
+2022-12-15 21:09:50.281 Unity[3259:33596] Using device AMD Radeon Pro 560 (high power)
+Initializing Metal device caps: AMD Radeon Pro 560
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56259
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.000746 seconds.
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 62.82 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.942 seconds
+Domain Reload Profiling:
+	ReloadAssembly (942ms)
+		BeginReloadAssembly (57ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (791ms)
+			LoadAssemblies (56ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (291ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (85ms)
+			SetupLoadedEditorAssemblies (290ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (10ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (63ms)
+				BeforeProcessingInitializeOnLoad (22ms)
+				ProcessInitializeOnLoadAttributes (145ms)
+				ProcessInitializeOnLoadMethodAttributes (49ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001254 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.33 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.535 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1536ms)
+		BeginReloadAssembly (224ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (47ms)
+		EndReloadAssembly (1223ms)
+			LoadAssemblies (96ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (395ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (531ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (88ms)
+				ProcessInitializeOnLoadAttributes (405ms)
+				ProcessInitializeOnLoadMethodAttributes (29ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Validating Project structure ... 0.000190 seconds.
+Shader import version has changed; will reimport all shaders...
+Upgrading shader files ...0.000385 seconds.
+Application.AssetDatabase Initial Script Refresh Start
+RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
+RefreshProfiler: Total: 0.000ms
+Application.AssetDatabase Initial Script Refresh End
+Application.AssetDatabase.Refresh Start
+Application.AssetDatabase.Refresh End
+RefreshInfo: StopAssetImportingV2(ForceSynchronousImport) scanfilter: 
+RefreshProfiler: Total: 0.000ms
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Initializing Unity extensions:
+========================================================================
+Worker process is ready to serve import requests
+Refreshing native plugins compatible for Editor in 0.30 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1548 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 181.6 MB.
+System memory in use after: 180.8 MB.
+
+Unloading 79 unused Assets to reduce memory usage. Loaded Objects now: 2023.
+Total: 3.611374 ms (FindLiveObjects: 0.140015 ms CreateObjectMapping: 0.049222 ms MarkObjects: 2.876280 ms  DeleteObjects: 0.545093 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Structs
+  artifactKey: Guid(629bc2449fade4daeb79461b0e14e5ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Structs using Guid(629bc2449fade4daeb79461b0e14e5ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5707a38566ed4f82b82039645cffd514') in 0.011242 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.366839 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces
+  artifactKey: Guid(3186255d15088474e8ab76e432f5bb17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces using Guid(3186255d15088474e8ab76e432f5bb17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4444696db32ea1a285a81b44a61ee99b') in 0.002363 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 78.634799 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs
+  artifactKey: Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs using Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b658d0085b242a62f4b12c78c32f2af') in 0.388424 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 54.896352 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs
+  artifactKey: Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs using Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21b78522124a3a4d789b3d34e8a11b8e') in 0.006585 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 237.591465 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs
+  artifactKey: Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs using Guid(1ab90018bfd724ab6bc9189d04deed55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74687324b1abb2ae803b1423bbf6c16d') in 0.005093 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 18.739540 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs
+  artifactKey: Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs using Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfbcd868eccaa450b8f34a73d62c5562') in 0.005916 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 22394.753958 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs
+  artifactKey: Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs using Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6f236d02fe466fcb8feea721a44d421') in 0.006005 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.773067 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs
+  artifactKey: Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs using Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aef1018e586c4f2148a214f2b29d4c50') in 0.005269 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5393.800321 seconds.
+  path: Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs
+  artifactKey: Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs using Guid(241ba53c2f07445e886fa169698bbda3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fddc4f62322804e2aeb9a98f643b4960') in 0.011227 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 50.291988 seconds.
+  path: Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/MessagingExtensions.cs
+  artifactKey: Guid(c956c04e7b5184cf8a32c63911520217) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/MessagingExtensions.cs using Guid(c956c04e7b5184cf8a32c63911520217) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90adcdeb6340f0e734174fa38e1956b9') in 0.004200 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 34210.212287 seconds.
+  path: Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/MessagingExtensions.cs
+  artifactKey: Guid(c956c04e7b5184cf8a32c63911520217) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/MessagingExtensions.cs using Guid(c956c04e7b5184cf8a32c63911520217) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25074bc69230738223b57d0280d60736') in 0.004752 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1507.283608 seconds.
+  path: Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts/TestRuntimeData.cs
+  artifactKey: Guid(331365e35b7ac4e4d88f1a75698ee5f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts/TestRuntimeData.cs using Guid(331365e35b7ac4e4d88f1a75698ee5f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5de08b86c44ea8be4de9c2a5b68dd5e7') in 0.006687 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 46807.052452 seconds.
+  path: Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts
+  artifactKey: Guid(13757505a7723440c93aff29c1a2e5c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts using Guid(13757505a7723440c93aff29c1a2e5c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fc32bc06072a8ca17d88eaa9941d311') in 0.002509 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 47.126133 seconds.
+  path: Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts/TestRuntimeData.cs
+  artifactKey: Guid(331365e35b7ac4e4d88f1a75698ee5f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/Tests/Runtime/Scripts/TestRuntimeData.cs using Guid(331365e35b7ac4e4d88f1a75698ee5f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f286c2a108d8e76cc97870c57228fa4') in 0.014667 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001727 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.484 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1486ms)
+		BeginReloadAssembly (254ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (14ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (134ms)
+		EndReloadAssembly (1148ms)
+			LoadAssemblies (116ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (394ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (67ms)
+			SetupLoadedEditorAssemblies (450ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (8ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (160ms)
+				ProcessInitializeOnLoadAttributes (261ms)
+				ProcessInitializeOnLoadMethodAttributes (18ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (3ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1545 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 187.2 MB.
+System memory in use after: 187.3 MB.
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 2030.
+Total: 3.578232 ms (FindLiveObjects: 0.203498 ms CreateObjectMapping: 0.078265 ms MarkObjects: 3.225025 ms  DeleteObjects: 0.070614 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 8989.947054 seconds.
+  path: Packages/com.pixeltheory.messaging/package.json
+  artifactKey: Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/package.json using Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da3544eb572e1b61cc8e68fcd7a3e6a4') in 4.904191 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3652.746563 seconds.
+  path: Packages/com.pixeltheory.messaging/package.json
+  artifactKey: Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/package.json using Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f7ea1cf4daea4327538397c7bb06164') in 0.002415 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.831996 seconds.
+  path: Packages/com.pixeltheory.messaging/package.json
+  artifactKey: Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.pixeltheory.messaging/package.json using Guid(a122823b206ea4431805fc4aa1e9c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd78a25c36f4c0d11bd36166f1d6affe1') in 0.001930 seconds 

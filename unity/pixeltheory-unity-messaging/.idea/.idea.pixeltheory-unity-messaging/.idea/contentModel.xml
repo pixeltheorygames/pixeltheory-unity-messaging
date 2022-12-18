@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_pixeltheory-unity-messaging.532232041.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scenes" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive">
+        <e p="com.pixeltheory.messaging" t="Include">
+          <e p="Editor" t="Include">
+            <e p="ControlPanel" t="Include">
+              <e p="MessagingControlPanelGenerator.cs" t="Include" />
+              <e p="MessagingControlPanelNamespaceAndTitleInputModal.cs" t="Include" />
+            </e>
+            <e p="MenuItems" t="Include">
+              <e p="MessagingMenuItems.cs" t="Include" />
+            </e>
+            <e p="MessageExtenstions" t="Include">
+              <e p="MessagingExtensionsGenerator.cs" t="Include" />
+            </e>
+            <e p="Misc" t="Include">
+              <e p="MessagingConstants.cs" t="Include" />
+              <e p="MessagingUtilities.cs" t="Include" />
+            </e>
+            <e p="Pixeltheory.Messaging.Editor.asmdef" t="Include" />
+          </e>
+          <e p="package.json" t="Include" />
+          <e p="Runtime" t="Include">
+            <e p="Attributes" t="Include">
+              <e p="MessagingInterface.cs" t="Include" />
+              <e p="MessagingNOP.cs" t="Include" />
+            </e>
+            <e p="Code" t="Include">
+              <e p="Classes" t="Include" />
+              <e p="Interfaces" t="Include">
+                <e p="IMessageReceiver.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="Abstract" t="Include" />
+                <e p="Concrete" t="Include" />
+                <e p="MessagingBehaviour.cs" t="Include" />
+                <e p="MessagingManager.cs" t="Include" />
+              </e>
+              <e p="Structs" t="Include">
+                <e p="MessagingKey.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Pixeltheory.Messaging.Runtime.asmdef" t="Include" />
+          </e>
+          <e p="Tests" t="Include">
+            <e p="Editor" t="Include">
+              <e p="Pixeltheory.Messaging.Editor.Tests.asmdef" t="Include" />
+            </e>
+            <e p="Runtime" t="Include">
+              <e p="Classes" t="Include">
+                <e p="MessagingExtensions.cs" t="Include" />
+                <e p="TestClassNoNamespace.cs" t="Include" />
+                <e p="TestClassPixelBehaviourSingleton.cs" t="Include" />
+                <e p="TestClassPixelScriptableObjectSingle.cs" t="Include" />
+                <e p="TestClassWithNamespace.cs" t="Include" />
+              </e>
+              <e p="Interfaces" t="Include">
+                <e p="InheritanceInterfaces" t="Include">
+                  <e p="TestInterfaceClassTypes.cs" t="Include" />
+                  <e p="TestInterfaceInheritance.cs" t="Include" />
+                  <e p="TestInterfaceReferenceTypes.cs" t="Include" />
+                  <e p="TestInterfaceSimpleTypes.cs" t="Include" />
+                  <e p="TestInterfaceValueTypes.cs" t="Include" />
+                </e>
+                <e p="NamespaceInterfaces" t="Include">
+                  <e p="TestInterfaceInNamespace.cs" t="Include" />
+                  <e p="TestInterfaceNoNamespace.cs" t="Include" />
+                </e>
+                <e p="ParameterInterfaces" t="Include">
+                  <e p="TestInterfaceBoolParameter.cs" t="Include" />
+                  <e p="TestInterfaceByteParameter.cs" t="Include" />
+                  <e p="TestInterfaceCharParameter.cs" t="Include" />
+                  <e p="TestInterfaceClassParameter.cs" t="Include" />
+                  <e p="TestInterfaceDoubleParameter.cs" t="Include" />
+                  <e p="TestInterfaceEnumParameter.cs" t="Include" />
+                  <e p="TestInterfaceFloatParameter.cs" t="Include" />
+                  <e p="TestInterfaceGameObjectParameter.cs" t="Include" />
+                  <e p="TestInterfaceIntParameter.cs" t="Include" />
+                  <e p="TestInterfaceListParameter.cs" t="Include" />
+                  <e p="TestInterfaceLongParameter.cs" t="Include" />
+                  <e p="TestInterfaceMonoBehaviourParameter.cs" t="Include" />
+                  <e p="TestInterfaceNoParameter.cs" t="Include" />
+                  <e p="TestInterfacePixelBehaviourParameter.cs" t="Include" />
+                  <e p="TestInterfacePixelBehaviourSingletonParameter.cs" t="Include" />
+                  <e p="TestInterfacePixelScriptableObjectParameter.cs" t="Include" />
+                  <e p="TestInterfacePixelScriptableObjectSingletonParameter.cs" t="Include" />
+                  <e p="TestInterfaceQuaternionParameter.cs" t="Include" />
+                  <e p="TestInterfaceScriptableObjectParameter.cs" t="Include" />
+                  <e p="TestInterfaceShortParameter.cs" t="Include" />
+                  <e p="TestInterfaceStringParameter.cs" t="Include" />
+                  <e p="TestInterfaceStructParameter.cs" t="Include" />
+                  <e p="TestInterfaceUnityEngineObjectParameter.cs" t="Include" />
+                  <e p="TestInterfaceVectorParameter.cs" t="Include" />
+                  <e p="TestMethodIntArrayParameter.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Pixeltheory.Messaging.Runtime.Tests.asmdef" t="Include" />
+              <e p="Scripts" t="Include">
+                <e p="TestMessagingReceiver.cs" t="Include" />
+                <e p="TestRuntimeData.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="pixeltheory-unity-messaging.sln" t="IncludeFlat" />
+      <e p="Pixeltheory.Messaging.Editor.csproj" t="IncludeRecursive" />
+      <e p="Pixeltheory.Messaging.Editor.Tests.csproj" t="IncludeRecursive" />
+      <e p="Pixeltheory.Messaging.Runtime.csproj" t="IncludeRecursive" />
+      <e p="Pixeltheory.Messaging.Runtime.Tests.csproj" t="IncludeRecursive" />
+      <e p="Temp/Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

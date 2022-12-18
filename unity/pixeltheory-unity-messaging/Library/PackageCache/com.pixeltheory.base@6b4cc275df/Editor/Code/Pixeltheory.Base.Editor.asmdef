@@ -1,0 +1,17 @@
+{
+    "name": "Pixeltheory.Base.Editor",
+    "references": [
+        "GUID:16eea3414a0614cc895a8b9cb73f8b79"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
