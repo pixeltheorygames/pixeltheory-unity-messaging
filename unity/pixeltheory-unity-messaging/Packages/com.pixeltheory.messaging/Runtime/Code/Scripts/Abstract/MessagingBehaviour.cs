@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pixeltheory.Debug;
+using UnityEngine;
 
 
 namespace Pixeltheory.Messaging
@@ -19,12 +20,17 @@ namespace Pixeltheory.Messaging
         protected override void Awake()
         {
             base.Awake();
-            if (!base.isBeingDestroyed && this.messagingManager == null)
+            if (!base.isBeingDestroyed)
             {
-                this.messagingManager = GameObject.FindObjectOfType<MessagingManager>();
+                this.messagingManager = 
+                    this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
                 if (this.messagingManager != null)
                 {
-                    this.messagingManager.RegisterForMessages(this);   
+                    this.messagingManager.RegisterForMessages(this);
+                }
+                else
+                {
+                    Logging.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
                 }
             }
         }

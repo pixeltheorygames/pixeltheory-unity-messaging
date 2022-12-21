@@ -9,6 +9,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Runtime/Code/Interfaces/IMessageReceiver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.pixeltheory.base@6b4cc275df/Runtime/Code/Scripts/Abstract/PixelBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Runtime/Code/Structs/MessagingKey.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -30,6 +31,8 @@
       <option value="$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/TestClassPixelBehaviourSingleton.cs" />
       <option value="$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Tests/Runtime/Classes/TestClassPixelScriptableObjectSingle.cs" />
       <option value="$PROJECT_DIR$/Packages/com.pixeltheory.messaging/package.json" />
+      <option value="$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Runtime/Code/Scripts/Abstract/MessagingBehaviour.cs" />
+      <option value="$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Runtime/Code/Scripts/Concrete/MessagingManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2ItR7s3PuIuGl5qvp1FgY8Wjap1" />
@@ -77,6 +80,7 @@
       <workItem from="1671084465492" duration="813000" />
       <workItem from="1671088254007" duration="3104000" />
       <workItem from="1671105885137" duration="8870000" />
+      <workItem from="1671646486653" duration="903000" />
     </task>
     <servers />
   </component>

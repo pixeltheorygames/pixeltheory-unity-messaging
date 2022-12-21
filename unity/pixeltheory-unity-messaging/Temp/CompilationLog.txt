@@ -1,6 +1,2 @@
 # Starting compiling Pixeltheory.Messaging.Runtime.dll
-/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Tools/RoslynScripts/unity_csc.sh /noconfig @Temp/UnityTempFile-0949889efcf9a418ba17e9b825a75b5e
-# Starting compiling Pixeltheory.Messaging.Runtime.Tests.dll
-/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Tools/RoslynScripts/unity_csc.sh /noconfig @Temp/UnityTempFile-9b294bf22876a43a1a16eac76e84f444
-# Starting compiling Pixeltheory.Messaging.Editor.dll
-/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Tools/RoslynScripts/unity_csc.sh /noconfig @Temp/UnityTempFile-f14197547680f4992a6938fbd8622073
+/Applications/Unity/Hub/Editor/2020.3.42f1/Unity.app/Contents/Tools/RoslynScripts/unity_csc.sh /noconfig @Temp/UnityTempFile-3af25274bff704e918fd40bf118de99a

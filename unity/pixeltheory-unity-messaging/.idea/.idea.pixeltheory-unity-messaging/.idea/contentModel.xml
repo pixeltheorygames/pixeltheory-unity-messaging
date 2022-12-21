@@ -40,10 +40,12 @@
                 <e p="IMessageReceiver.cs" t="Include" />
               </e>
               <e p="Scripts" t="Include">
-                <e p="Abstract" t="Include" />
-                <e p="Concrete" t="Include" />
-                <e p="MessagingBehaviour.cs" t="Include" />
-                <e p="MessagingManager.cs" t="Include" />
+                <e p="Abstract" t="Include">
+                  <e p="MessagingBehaviour.cs" t="Include" />
+                </e>
+                <e p="Concrete" t="Include">
+                  <e p="MessagingManager.cs" t="Include" />
+                </e>
               </e>
               <e p="Structs" t="Include">
                 <e p="MessagingKey.cs" t="Include" />
