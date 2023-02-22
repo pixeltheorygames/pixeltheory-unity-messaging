@@ -5,5 +5,5 @@ using Pixeltheory.Messaging;
 [MessagingInterface]
 public interface TestInterfaceGameObjectParameter
 {
-    void TestMethodGameObjectParameter(GameObject gameObjectParameter);
+    [MessagingTargetAll] public void TestMethodGameObjectParameter(GameObject gameObjectParameter);
 }

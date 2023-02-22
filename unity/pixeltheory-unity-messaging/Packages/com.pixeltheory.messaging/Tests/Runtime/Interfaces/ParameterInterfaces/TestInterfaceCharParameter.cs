@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceCharParameter
 {
-    void TestMethodCharParameter(char charParam);
+    [MessagingTargetAll] public void TestMethodCharParameter(char charParam);
 }

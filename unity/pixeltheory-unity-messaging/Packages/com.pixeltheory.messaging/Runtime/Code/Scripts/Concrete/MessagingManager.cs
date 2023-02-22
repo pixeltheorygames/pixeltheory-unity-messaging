@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using Pixeltheory.Debug;
+using Pixeltheory.Messaging.Utilities;
 
 
 namespace Pixeltheory.Messaging
@@ -17,16 +18,30 @@ namespace Pixeltheory.Messaging
 
         #region Instance
         #region Fields
-        #region Internal Fields
+        #region Inspector
+        [Header("MessagingManager")]
+        [SerializeField] private MessagingManagerCache offlineCache;
+        [SerializeField] private bool writeBackToOfflineCache;
+        #endregion //Inspector
+        
+        #region Internal
+        internal enum MessageTargetType
+        {
+            Unknown,
+            MessageTargetAll,
+            MessageTargetSingle,
+            MessageTargetMulti
+        }
         internal struct MessageKey
         {
+            internal MessageTargetType MessageTargetType;
             internal Type type;
-            internal string message;
+            internal string messageFullName;
         }
-        private Dictionary<MessageKey, List<IMessageReceiver>> messageReceivers;
-        private Dictionary<IMessageReceiver, List<MessageKey>> messageKeys;
-        private Dictionary<Type, List<MessageKey>> typeMessages;
-        #endregion //Local Access Variables
+        private Dictionary<string, MessageKey> messageKeyCache;
+        private Dictionary<IMessageReceiver, List<MessageKey>> messageReceiverCache;
+        private Dictionary<MessageKey, Dictionary<int, List<IMessageReceiver>>> messageReceivers;
+        #endregion //Internal
         #endregion //Fields
 
         #region Methods
@@ -35,198 +50,165 @@ namespace Pixeltheory.Messaging
         {
             base.Awake();
             Logging.Log(this.name + " - Initializing.");
-            this.messageReceivers = new Dictionary<MessageKey, List<IMessageReceiver>>();
-            this.messageKeys = new Dictionary<IMessageReceiver, List<MessageKey>>();
-            this.typeMessages = new Dictionary<Type, List<MessageKey>>();
+            bool offlineCacheObjectExists = this.offlineCache != null;
+            this.messageKeyCache = 
+                offlineCacheObjectExists && this.offlineCache.messageKeyCacheOffline != null ? 
+                    this.offlineCache.messageKeyCacheOffline : 
+                    new Dictionary<string, MessageKey>();
+            this.messageReceiverCache =
+                offlineCacheObjectExists && this.offlineCache.messageReceiverCacheOffline != null ?
+                    this.offlineCache.messageReceiverCacheOffline :
+                    new Dictionary<IMessageReceiver, List<MessageKey>>();
+            this.messageReceivers = new Dictionary<MessageKey, Dictionary<int, List<IMessageReceiver>>>();
         }
 
         protected override void OnDestroy()
         {
             Logging.Log(this.name + " - Shutting down.");
+            
+            #if UNITY_EDITOR
+            if (this.offlineCache != null && this.writeBackToOfflineCache)
+            {
+                this.offlineCache.messageKeyCacheOffline = this.messageKeyCache;
+                this.offlineCache.messageReceiverCacheOffline = this.messageReceiverCache;
+            }
+            #endif
+            
+            this.messageKeyCache.Clear();
+            this.messageKeyCache = null;
+            this.messageReceiverCache.Clear();
+            this.messageReceiverCache = null;
             this.messageReceivers.Clear();
-            this.messageKeys.Clear();
-            this.typeMessages.Clear();
+            this.messageReceivers = null;
             base.OnDestroy();
         }
         #endregion //Unity Messages
 
-        #region Local Access Methods
-        internal bool RegisterForMessagesFromCache(Type interfaceType, IMessageReceiver listener)
+        #region Internal
+        internal void RegisterForMessagesInternal<T>(IMessageReceiver listener)
         {
-            bool successfullyRegisteredFromCache = false;
-            List<MessageKey> cachedMessages;
-            this.typeMessages.TryGetValue(interfaceType, out cachedMessages);
-            if (cachedMessages != null)
+            int listenerID = listener.MessageReceiverID();
+            List<MessageKey> listenerMessageKeys;
+            Dictionary<int, List<IMessageReceiver>> idToMessageReceiverMapTemp;
+            List<IMessageReceiver> messageReceiversListTemp;
+            int listenerIDIndexTemp;
+            
+            if (!this.messageReceiverCache.TryGetValue(listener, out listenerMessageKeys))
             {
-                foreach (MessageKey key in cachedMessages)
-                { 
-                    this.RegisterForMessagesInternal(key, listener);
+                List<Type> implementedMessagingInterfaceTypes;
+                List<MethodInfo> implementedMessagingInterfaceMethods;
+                List<MessageKey> messagingInterfaceKeys;
+                if (!MessagingUtilitiesRuntime.GetImplementedMessagingInterfaceTypes(typeof(T), out implementedMessagingInterfaceTypes))
+                {
+                    implementedMessagingInterfaceTypes = new List<Type>();
                 }
-                successfullyRegisteredFromCache = true;
-            }
-            return successfullyRegisteredFromCache;
-        }
-
-        internal void AddMessagesToCache(Type interfaceType, List<MessageKey> messages)
-        {
-            if (this.typeMessages.ContainsKey(interfaceType))
-            {
-                this.typeMessages.Remove(interfaceType);
-            }
-            this.typeMessages.Add(interfaceType, messages);
-        }
-
-        internal void RegisterForMessagesInternal(MessageKey key, IMessageReceiver listener)
-        {
-            // Register listener
-            List<IMessageReceiver> registeredListeners;
-            this.messageReceivers.TryGetValue(key, out registeredListeners);
-            if (registeredListeners == null)
-            {
-                // Add empty list if this is the first time this event has been subscribed to
-                registeredListeners = new List<IMessageReceiver>();
-                registeredListeners.Add(listener);
-                this.messageReceivers.Add(key, registeredListeners);
-            }
-            else if (!registeredListeners.Contains(listener))
-            {
-                registeredListeners.Add(listener);
+                if (!MessagingUtilitiesRuntime.GetImplementedMessagingMethods(typeof(T), implementedMessagingInterfaceTypes, out implementedMessagingInterfaceMethods))
+                {
+                    implementedMessagingInterfaceMethods = new List<MethodInfo>();
+                }
+                if (!MessagingUtilitiesRuntime.CreateMessageKeys(implementedMessagingInterfaceMethods, this.messageKeyCache, out messagingInterfaceKeys))
+                {
+                    messagingInterfaceKeys = new List<MessageKey>();
+                }
+                this.messageReceiverCache.Add(listener, messagingInterfaceKeys);
             }
             
-            // Add key to registeredKeys if needed
-            List<MessageKey> registeredKeys;
-            this.messageKeys.TryGetValue(listener, out registeredKeys);
-            if (registeredKeys == null)
+            foreach (MessageKey messageKey in listenerMessageKeys)
             {
-                // First time this listener has registered for messages so create new list
-                registeredKeys = new List<MessageKey>();
-                registeredKeys.Add(key);
-                this.messageKeys.Add(listener, registeredKeys);
+                if (messageKey.MessageTargetType != MessageTargetType.Unknown)
+                {
+                    listenerIDIndexTemp = messageKey.MessageTargetType == MessageTargetType.MessageTargetAll ? 0 : listenerID;
+                    if (!this.messageReceivers.TryGetValue(messageKey, out idToMessageReceiverMapTemp))
+                    {
+                        idToMessageReceiverMapTemp = new Dictionary<int, List<IMessageReceiver>>();
+                    }
+                    if (!idToMessageReceiverMapTemp.TryGetValue(listenerIDIndexTemp, out messageReceiversListTemp))
+                    {
+                        messageReceiversListTemp = new List<IMessageReceiver>();
+                    }
+                    if (!messageReceiversListTemp.Contains(listener))
+                    {
+                        messageReceiversListTemp.Add(listener);
+                    }
+                    idToMessageReceiverMapTemp[listenerIDIndexTemp] = messageReceiversListTemp;
+                    this.messageReceivers[messageKey] = idToMessageReceiverMapTemp;
+                }
             }
-            else if (!registeredKeys.Contains(key))
+        }
+        
+        internal void DeregisterForMessagesInternal<T>(IMessageReceiver listener)
+        {
+            List<MessageKey> registeredKeys;
+            if (this.messageReceiverCache.TryGetValue(listener, out registeredKeys))
             {
-                registeredKeys.Add(key);
+                foreach (MessageKey key in registeredKeys)
+                {
+                    Dictionary<int, List<IMessageReceiver>> targetIDToMessageReceiversMap;
+                    if (this.messageReceivers.TryGetValue(key, out targetIDToMessageReceiversMap))
+                    {
+                        int targetID = key.MessageTargetType == MessageTargetType.MessageTargetSingle ? listener.MessageReceiverID() : 0;
+                        List<IMessageReceiver> messageKeyReceivers;
+                        if (targetIDToMessageReceiversMap.TryGetValue(targetID, out messageKeyReceivers))
+                        {
+                            messageKeyReceivers.Remove(listener);
+                        }
+                    }
+                }
+                this.messageReceiverCache.Remove(listener);
             }
         }
 
-        internal void DeregisterForMessagesInternal(IMessageReceiver listener)
+        internal bool GetRegisteredMessageListenersInternal(string messageNameFull, int targetObjectID, out List<IMessageReceiver> messageListeners)
         {
-            List<MessageKey> registeredKeys;
-            this.messageKeys.TryGetValue(listener, out registeredKeys);
-            if (registeredKeys != null)
+            bool result = false;
+            List<IMessageReceiver> receivers = null;
+            MessageKey key;
+            if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
             {
-                foreach (MessageKey keyToRemove in registeredKeys)
+                Dictionary<int, List<IMessageReceiver>> targetIdToMessageReceiversMap;
+                if (this.messageReceivers.TryGetValue(key, out targetIdToMessageReceiversMap))
                 {
-                    List<IMessageReceiver> registeredListeners;
-                    this.messageReceivers.TryGetValue(keyToRemove, out registeredListeners);
-                    if (registeredListeners != null && registeredListeners.Contains(listener))
+                    if (targetIdToMessageReceiversMap.TryGetValue(targetObjectID, out receivers))
                     {
-                        registeredListeners.Remove(listener);
+                        result = true;
                     }
                 }
             }
+            messageListeners = receivers;
+            return result;
         }
-
-        internal List<T> GetRegisteredListenersInternal<T>(string messageName)
-        {
-            List<IMessageReceiver> registeredListeners;
-            MessageKey key = new MessageKey { type = typeof(T), message = messageName };
-            this.messageReceivers.TryGetValue(key, out registeredListeners);
-            if (registeredListeners == null)
-            {
-                // Add empty list if this is the first time this event has been fired
-                registeredListeners = new List<IMessageReceiver>();
-                this.messageReceivers.Add(key, registeredListeners);
-            }
-            return registeredListeners.Cast<T>().ToList();
-        }
-        #endregion //Local Access Methods
+        #endregion //Internal
         #endregion //Methods
         #endregion //Instance
     }
 
-    public static class MessagingManagerCoreExtensions
+    public static class MessagingManagerCoreExtensions //Public facing MessagingManager API
     {
-        public static void RegisterForMessages(this MessagingManager messagingManager, IMessageReceiver listener)
+        public static void RegisterForMessages<T>(this MessagingManager messagingManager, IMessageReceiver listener)
         {
-            messagingManager = 
-                messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : messagingManager;
             if (messagingManager != null)
             {
-                Logging.Log(listener.GameObjectName() + " - Registering all messaging methods.");
-                Type listenerType = listener.GetType();
-                if (!messagingManager.RegisterForMessagesFromCache(listenerType, listener))
-                {
-                    List<string> listenerMethodNames = new List<string>();
-                    MethodInfo[] listenerMethods = listenerType.GetMethods();
-                    foreach (MethodInfo method in listenerMethods)
-                    {
-                        // Filter out all methods which have the MessagingNOP attribute
-                        MessagingNOP messagingNOPAttribute = method.GetCustomAttribute<MessagingNOP>();
-                        if (messagingNOPAttribute == null)
-                        {
-                            listenerMethodNames.Add(method.Name);
-                        }
-                    }
-
-                    // Find all messaging interfaces this component adheres to
-                    Type[] listerInterfaces = listenerType.GetInterfaces();
-                    List<Type> messagingInterfaces = new List<Type>();
-                    foreach (Type potentialInterfaceType in listerInterfaces)
-                    {
-                        MessagingInterface messagingInterfaceAttribute = potentialInterfaceType.GetCustomAttribute<MessagingInterface>();
-                        if (messagingInterfaceAttribute != null)
-                        {
-                            messagingInterfaces.Add(potentialInterfaceType);
-                        }
-                    }
-
-                    // Register for messages with the MessagingManager while building cache entry
-                    List<MessagingManager.MessageKey> messagesToCache = new List<MessagingManager.MessageKey>();
-                    foreach(Type messagingInterfaceType in messagingInterfaces)
-                    {
-                        MethodInfo[] interfaceMethods = messagingInterfaceType.GetMethods(); 
-                        foreach (MethodInfo method in interfaceMethods)
-                        { 
-                            if (listenerMethodNames.Contains(method.Name))  // We have to match the names of the methods
-                            {
-                                // Register for message
-                                MessagingManager.MessageKey key = new MessagingManager.MessageKey { type = messagingInterfaceType, message = method.Name };
-                                messagingManager.RegisterForMessagesInternal(key, listener);
-                                messagesToCache.Add(key);
-                            }
-                        }
-                    }
-
-                    messagingManager.AddMessagesToCache(listenerType, messagesToCache);
-                }
+                messagingManager.RegisterForMessagesInternal<T>(listener);
             }
         }
 
-        public static void DeregisterForMessages(this MessagingManager messagingManager, IMessageReceiver listener)
+        public static void DeregisterForMessages<T>(this MessagingManager messagingManager, IMessageReceiver listener)
         {
-            messagingManager = 
-                messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : messagingManager;
             if (messagingManager != null)
             {
-                messagingManager.DeregisterForMessagesInternal(listener);
+                messagingManager.DeregisterForMessagesInternal<T>(listener);
             }
         }
 
-        public static List<T> GetRegisteredListeners<T>(this MessagingManager messagingManager, string messageName)
+        public static List<T> GetRegisteredMessageListeners<T>(this MessagingManager messagingManager, string messageName, int targetObjectID)
         {
-            if (messagingManager != null)
+            string messageNameFull = typeof(T).FullName + "." + messageName;
+            List<IMessageReceiver> messageListeners;
+            if (messagingManager == null || !messagingManager.GetRegisteredMessageListenersInternal(messageNameFull, targetObjectID, out messageListeners))
             {
-                return messagingManager.GetRegisteredListenersInternal<T>(messageName);
+                messageListeners = new List<IMessageReceiver>();
             }
-            else
-            {
-                // We return an empty list here if the messaging manager does not
-                // currently exist. This should only happen if an event is called
-                // during boot-up or shutdown, so the impact to garbage collection
-                // can be ignored.
-                return new List<T>();
-            }
+            return messageListeners.Cast<T>().ToList();
         }
     }
 }

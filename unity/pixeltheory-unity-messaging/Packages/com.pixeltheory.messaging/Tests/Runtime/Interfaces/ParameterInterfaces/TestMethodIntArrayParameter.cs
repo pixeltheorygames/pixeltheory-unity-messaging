@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceArrayParameter
 {
-    void TestMethodIntArrayParameter(int[] arrayParam);
+    [MessagingTargetAll] public void TestMethodIntArrayParameter(int[] arrayParam);
 }

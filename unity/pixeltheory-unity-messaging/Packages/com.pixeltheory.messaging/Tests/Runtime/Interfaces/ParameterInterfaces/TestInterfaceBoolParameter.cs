@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceBoolParameter
 {
-    void TestMethodBoolParameter(bool boolParam);
+    [MessagingTargetAll] public void TestMethodBoolParameter(bool boolParam);
 }

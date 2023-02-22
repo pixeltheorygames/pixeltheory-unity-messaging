@@ -4,7 +4,7 @@
 [MessagingInterface]
 public interface TestInterfaceIntParameter
 {
-    void TestMethodIntSignedParameter(int signedIntParam);
-    void TestMethodIntUnsignedParameter(uint unsignedIntParam);
-    void TestMethodIntParameter(int signedIntParam, uint unsignedIntParam);
+    [MessagingTargetAll] public void TestMethodIntSignedParameter(int signedIntParam);
+    [MessagingTargetAll] public void TestMethodIntUnsignedParameter(uint unsignedIntParam);
+    [MessagingTargetAll] public void TestMethodIntParameter(int signedIntParam, uint unsignedIntParam);
 }

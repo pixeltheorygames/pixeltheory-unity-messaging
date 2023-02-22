@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfacePixelScriptableObjectSingletonParameter
 {
-    void TestMethodPixelScriptableObjectSingletonParameter(TestClassPixelScriptableObjectSingle pixelScriptableObjectSingletonParameter);
+    [MessagingTargetAll] public void TestMethodPixelScriptableObjectSingletonParameter(TestClassPixelScriptableObjectSingle pixelScriptableObjectSingletonParameter);
 }

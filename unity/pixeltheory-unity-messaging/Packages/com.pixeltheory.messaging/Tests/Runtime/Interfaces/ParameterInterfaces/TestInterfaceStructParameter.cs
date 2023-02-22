@@ -50,5 +50,5 @@ public struct TestStruct
 [MessagingInterface]
 public interface TestInterfaceStructParameter
 {
-    void TestMethodStructParameter(TestStruct structParam);
+    [MessagingTargetAll] public void TestMethodStructParameter(TestStruct structParam);
 }

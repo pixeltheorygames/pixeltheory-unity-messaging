@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceUnityEngineObjectParameter
 {
-    void TestMethodUnityEngineObjectParameter(UnityEngine.Object unityEngineObjectParameter);
+    [MessagingTargetAll] public void TestMethodUnityEngineObjectParameter(UnityEngine.Object unityEngineObjectParameter);
 }

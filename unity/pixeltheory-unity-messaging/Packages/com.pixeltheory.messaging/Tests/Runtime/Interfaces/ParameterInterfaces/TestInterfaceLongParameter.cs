@@ -4,7 +4,7 @@
 [MessagingInterface]
 public interface TestInterfaceLongParameter
 {
-    void TestMethodLongSignedParameter(long signedLongParam);
-    void TestMethodLongUnsignedParameter(ulong unsignedLongParam);
-    void TestMethodLongParameter(long signedLongParam, ulong unsignedLongParam);
+    [MessagingTargetAll] public void TestMethodLongSignedParameter(long signedLongParam);
+    [MessagingTargetAll] public void TestMethodLongUnsignedParameter(ulong unsignedLongParam);
+    [MessagingTargetAll] public void TestMethodLongParameter(long signedLongParam, ulong unsignedLongParam);
 }

@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfacePixelBehaviourSingletonParameter
 {
-    void TestMethodOddBehaviourSingletonParameter(TestClassPixelBehaviourSingleton pixelBehaviourSingletonParameter);
+    [MessagingTargetAll] public void TestMethodOddBehaviourSingletonParameter(TestClassPixelBehaviourSingleton pixelBehaviourSingletonParameter);
 }

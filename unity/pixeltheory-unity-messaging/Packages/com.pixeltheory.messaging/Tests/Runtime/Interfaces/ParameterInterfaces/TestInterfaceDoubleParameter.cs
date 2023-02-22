@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceDoubleParameter
 {
-    void TestMethodDoubleParameter(double doubleParam);
+    [MessagingTargetAll] public void TestMethodDoubleParameter(double doubleParam);
 }

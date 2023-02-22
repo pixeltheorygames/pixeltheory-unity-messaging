@@ -5,5 +5,5 @@ using Pixeltheory.Messaging;
 [MessagingInterface]
 public interface TestInterfaceScriptableObjectParameter
 {
-    void TestMethodScriptableObjectParameter(ScriptableObject scriptableObjectParameter);
+    [MessagingTargetAll] public void TestMethodScriptableObjectParameter(ScriptableObject scriptableObjectParameter);
 }

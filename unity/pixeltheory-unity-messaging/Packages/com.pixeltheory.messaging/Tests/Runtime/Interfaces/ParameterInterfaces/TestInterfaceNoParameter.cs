@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceNoParameter
 {
-    void TestMethodNoParameter();
+    [MessagingTargetAll] public void TestMethodNoParameter();
 }

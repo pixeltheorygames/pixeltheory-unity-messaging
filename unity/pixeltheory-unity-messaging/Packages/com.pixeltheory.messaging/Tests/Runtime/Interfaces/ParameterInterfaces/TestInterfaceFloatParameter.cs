@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceFloatParameter
 {
-    void TestMethodFloatParameter(float floatParam);
+    [MessagingTargetAll] public void TestMethodFloatParameter(float floatParam);
 }

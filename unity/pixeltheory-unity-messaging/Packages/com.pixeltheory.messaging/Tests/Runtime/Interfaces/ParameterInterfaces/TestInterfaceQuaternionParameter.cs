@@ -5,5 +5,5 @@ using Pixeltheory.Messaging;
 [MessagingInterface]
 public interface TestInterfaceQuaternionParameter
 {
-    void TestMethodQuaternionParameter(Quaternion quaternionParam);
+    [MessagingTargetAll] public void TestMethodQuaternionParameter(Quaternion quaternionParam);
 }

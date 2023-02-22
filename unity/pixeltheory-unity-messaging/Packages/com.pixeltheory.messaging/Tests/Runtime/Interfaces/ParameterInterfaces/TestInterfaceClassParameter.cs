@@ -32,5 +32,5 @@ public class TestClass
 [MessagingInterface]
 public interface TestInterfaceClassParameter
 {
-    void TestMethodClassParameter(TestClass classPrameter);
+    [MessagingTargetAll] public void TestMethodClassParameter(TestClass classPrameter);
 }

@@ -25,7 +25,7 @@ namespace Pixeltheory.Messaging
                     this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
                 if (this.messagingManager != null)
                 {
-                    this.messagingManager.RegisterForMessages(this);
+                    this.messagingManager.RegisterForMessages<TypeComponent>(this);
                 }
                 else
                 {
@@ -38,16 +38,21 @@ namespace Pixeltheory.Messaging
         {
             if (this.messagingManager != null)
             {
-                this.messagingManager.DeregisterForMessages(this);   
+                this.messagingManager.DeregisterForMessages<TypeComponent>(this);   
             }
             base.OnDestroy();
         }
         #endregion //Unity Messages
 
         #region IMessageReceiver
-        public string GameObjectName()
+        public string MessageReceiverName()
         {
             return this.name;
+        }
+
+        public int MessageReceiverID()
+        {
+            return this.GetInstanceID();
         }
         #endregion
         #endregion //Methods
@@ -75,7 +80,7 @@ namespace Pixeltheory.Messaging
                     this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
                 if (this.messagingManager != null)
                 {
-                    this.messagingManager.RegisterForMessages(this);
+                    this.messagingManager.RegisterForMessages<TypeComponent>(this);
                 }
                 else
                 {
@@ -88,16 +93,21 @@ namespace Pixeltheory.Messaging
         {
             if (this.messagingManager != null)
             {
-                this.messagingManager.DeregisterForMessages(this);   
+                this.messagingManager.DeregisterForMessages<TypeComponent>(this);   
             }
             base.OnDestroy();
         }
         #endregion //Unity Messages
 
         #region IMessageReceiver
-        public string GameObjectName()
+        public string MessageReceiverName()
         {
             return this.name;
+        }
+
+        public int MessageReceiverID()
+        {
+            return this.GetInstanceID();
         }
         #endregion
         #endregion //Methods

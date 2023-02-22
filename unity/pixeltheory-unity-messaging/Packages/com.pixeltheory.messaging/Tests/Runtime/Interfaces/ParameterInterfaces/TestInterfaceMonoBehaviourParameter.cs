@@ -5,5 +5,5 @@ using Pixeltheory.Messaging;
 [MessagingInterface]
 public interface TestInterfaceMonoBehaviourParameter
 {
-    void TestMethodMonoBehaviourParameter(MonoBehaviour monoBehaviourParameter);
+    [MessagingTargetAll] public void TestMethodMonoBehaviourParameter(MonoBehaviour monoBehaviourParameter);
 }

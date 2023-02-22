@@ -2,6 +2,7 @@ namespace Pixeltheory.Messaging
 {
     public interface IMessageReceiver
     {
-        public string GameObjectName();
+        public string MessageReceiverName();
+        public int MessageReceiverID();
     }
 }

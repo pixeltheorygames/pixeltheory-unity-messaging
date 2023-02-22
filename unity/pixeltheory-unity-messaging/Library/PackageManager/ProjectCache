@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638066850010000000
+      ticks: 638126548870000000
     m_Hash: 3824120659
   m_LockFileStatus:
     m_FilePath: /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging/Packages/packages-lock.json
@@ -13,8 +13,8 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638066850010000000
-    m_Hash: 427441109
+      ticks: 638126548870000000
+    m_Hash: 1349382776
 m_EmbeddedPackageManifests:
   m_ManifestsStatus:
     /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging/package.json:
@@ -33,7 +33,7 @@ m_PackageAssets:
       isDirectDependency: 1
       version: 1.0.0
       source: 5
-      resolvedPath: /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging/Library/PackageCache/com.pixeltheory.base@6b4cc275df
+      resolvedPath: /Users/ellistalley/Projects/Pixeltheory/UnityPackages/pixeltheory-unity-messaging/unity/pixeltheory-unity-messaging/Library/PackageCache/com.pixeltheory.base@43ea112cb2
       assetPath: Packages/com.pixeltheory.base
       name: com.pixeltheory.base
       displayName: Pixeltheory Unity Base Package
@@ -58,6 +58,7 @@ m_PackageAssets:
       - Base
       - Debug
       - Logger
+      - ObjectPool
       registry:
         id: main
         name: 
@@ -161,6 +162,7 @@ m_PackageAssets:
         - 2.0.0-preview.20
         - 2.0.0-preview.21
         - 2.0.0-preview.22
+        - 2.0.0
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -174,6 +176,7 @@ m_PackageAssets:
         - 2.0.0-preview.20
         - 2.0.0-preview.21
         - 2.0.0-preview.22
+        - 2.0.0
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
@@ -276,6 +279,7 @@ m_PackageAssets:
         - 3.0.15
         - 3.0.16
         - 3.0.17
+        - 3.0.18
         compatible:
         - 1.0.2
         - 1.0.6
@@ -310,7 +314,8 @@ m_PackageAssets:
         - 3.0.15
         - 3.0.16
         - 3.0.17
-        verified: 3.0.17
+        - 3.0.18
+        verified: 3.0.18
       dependencies:
       - name: com.unity.ext.nunit
         version: 1.0.6
@@ -568,6 +573,7 @@ m_PackageAssets:
         - 1.3.0
         - 1.3.1
         - 1.3.2
+        - 1.3.3
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -577,6 +583,7 @@ m_PackageAssets:
         - 1.3.0
         - 1.3.1
         - 1.3.2
+        - 1.3.3
         - 2.0.1-exp.1
         - 2.0.1-exp.2
         - 2.0.1-pre.12
@@ -634,7 +641,7 @@ m_PackageAssets:
         email: 
         url: 
       category: Text Rendering
-      type: 
+      type: asset
       description: 'TextMeshPro is the ultimate text solution for Unity. It''s the
         perfect replacement for Unity''s UI Text and the legacy Text Mesh.
 
@@ -743,12 +750,15 @@ m_PackageAssets:
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
+        - 3.2.0-pre.4
         - 4.0.0-pre.1
+        - 4.0.0-pre.2
         compatible:
         - 3.0.6
         - 3.2.0-pre.1
         - 3.2.0-pre.2
         - 3.2.0-pre.3
+        - 3.2.0-pre.4
         verified: 3.0.6
       dependencies:
       - name: com.unity.ugui
@@ -775,7 +785,7 @@ m_PackageAssets:
         capabilities: 7
         configSource: 0
       hasRegistry: 1
-      hideInEditor: 1
+      hideInEditor: 0
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
@@ -881,7 +891,9 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.7.3
         - 1.8.0
+        - 1.8.1
         compatible:
         - 1.4.8
         - 1.5.0-pre.2
@@ -911,7 +923,9 @@ m_PackageAssets:
         - 1.7.0
         - 1.7.1
         - 1.7.2
+        - 1.7.3
         - 1.8.0
+        - 1.8.1
         verified: 1.4.8
       dependencies:
       - name: com.unity.modules.director
@@ -2961,6 +2975,7 @@ m_PackageAssets:
         - 1.5.2
         - 1.6.0
         - 1.7.0
+        - 1.7.1
         compatible:
         - 1.0.1
         - 1.1.0-pre.7
@@ -2980,6 +2995,7 @@ m_PackageAssets:
         - 1.5.2
         - 1.6.0
         - 1.7.0
+        - 1.7.1
         verified: 1.6.0
       dependencies:
       - name: com.unity.modules.unitywebrequest

@@ -12,5 +12,5 @@ public enum TestEnum
 [MessagingInterface]
 public interface TestInterfaceEnumParameter
 {
-    void TestMethodEnumParameter(TestEnum enumParam);
+    [MessagingTargetAll] public void TestMethodEnumParameter(TestEnum enumParam);
 }

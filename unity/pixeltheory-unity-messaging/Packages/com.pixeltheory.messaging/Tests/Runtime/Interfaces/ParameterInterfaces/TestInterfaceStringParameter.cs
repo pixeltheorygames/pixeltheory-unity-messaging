@@ -4,5 +4,5 @@
 [MessagingInterface]
 public interface TestInterfaceStringParameter
 {
-    void TestMethodStringParameter(string stringParam);
+    [MessagingTargetAll] public void TestMethodStringParameter(string stringParam);
 }
