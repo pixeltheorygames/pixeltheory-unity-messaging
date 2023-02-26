@@ -183,6 +183,7 @@ namespace Pixeltheory.Messaging
             bool result = false;
             List<IMessageReceiver> receivers = null;
             MessageKey key;
+            Logging.Warn(messageNameFull);
             foreach (String tempFullName in this.messageKeyCache.Keys)
             {
                 Logging.Warn(tempFullName);
@@ -227,9 +228,8 @@ namespace Pixeltheory.Messaging
             }
         }
 
-        public static List<T> GetRegisteredMessageListeners<T>(this MessagingManager messagingManager, string messageName, int targetObjectID)
+        public static List<T> GetRegisteredMessageListeners<T>(this MessagingManager messagingManager, string messageNameFull, int targetObjectID)
         {
-            string messageNameFull = typeof(T).FullName + "." + messageName;
             List<IMessageReceiver> messageListeners;
             if (messagingManager == null || !messagingManager.GetRegisteredMessageListenersInternal(messageNameFull, targetObjectID, out messageListeners))
             {

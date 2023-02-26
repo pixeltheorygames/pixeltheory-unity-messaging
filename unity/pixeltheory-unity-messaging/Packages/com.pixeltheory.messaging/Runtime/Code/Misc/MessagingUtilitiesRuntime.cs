@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
+using Sirenix.Utilities;
 using MessageKey = Pixeltheory.Messaging.MessagingManager.MessageKey;
 
 
@@ -18,7 +18,7 @@ namespace Pixeltheory.Messaging.Utilities
             Type[] interfaces = componentType.GetInterfaces();
             foreach (Type interfaceType in interfaces)
             {
-                if (interfaceType.GetCustomAttribute<MessagingInterface>() != null)
+                if (CustomAttributeExtensions.GetCustomAttribute<MessagingInterface>(interfaceType) != null)
                 {
                     messagingInterfaces.Add(interfaceType);
                 }
@@ -34,11 +34,12 @@ namespace Pixeltheory.Messaging.Utilities
             foreach (Type interfaceType in implementedInterfaces)
             {
                 InterfaceMapping map = componentType.GetInterfaceMap(interfaceType);
-                foreach (MethodInfo possibleImplementedMethod in map.TargetMethods)
+                for (int i = 0; i < map.TargetMethods.Length; i++)
                 {
+                    MethodInfo possibleImplementedMethod = map.TargetMethods[i];
                     if (possibleImplementedMethod.GetCustomAttribute<MessagingNOP>() == null)
                     {
-                        filteredImplementedMessagingInterfaceMethods.Add(possibleImplementedMethod);
+                        filteredImplementedMessagingInterfaceMethods.Add(map.InterfaceMethods[i]);
                     }
                 }
             }
