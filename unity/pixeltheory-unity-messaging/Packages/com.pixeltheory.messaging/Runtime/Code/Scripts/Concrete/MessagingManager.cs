@@ -159,6 +159,25 @@ namespace Pixeltheory.Messaging
             }
         }
 
+        // internal bool GetRegisteredMessageListenersInternal(string messageNameFull, int targetObjectID, out List<IMessageReceiver> messageListeners)
+        // {
+        //     bool result = false;
+        //     List<IMessageReceiver> receivers = null;
+        //     MessageKey key;
+        //     if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
+        //     {
+        //         Dictionary<int, List<IMessageReceiver>> targetIdToMessageReceiversMap;
+        //         if (this.messageReceivers.TryGetValue(key, out targetIdToMessageReceiversMap))
+        //         {
+        //             if (targetIdToMessageReceiversMap.TryGetValue(targetObjectID, out receivers))
+        //             {
+        //                 result = true;
+        //             }
+        //         }
+        //     }
+        //     messageListeners = receivers;
+        //     return result;
+        // }
         internal bool GetRegisteredMessageListenersInternal(string messageNameFull, int targetObjectID, out List<IMessageReceiver> messageListeners)
         {
             bool result = false;
@@ -166,11 +185,14 @@ namespace Pixeltheory.Messaging
             MessageKey key;
             if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
             {
+                Logging.Warn("Found messageNameFull key = {0}", key.ToString());
                 Dictionary<int, List<IMessageReceiver>> targetIdToMessageReceiversMap;
                 if (this.messageReceivers.TryGetValue(key, out targetIdToMessageReceiversMap))
                 {
+                    Logging.Warn("Found targetIdToMessageReceiversMap dictiornay  = {0}", targetIdToMessageReceiversMap.Keys.ToString());
                     if (targetIdToMessageReceiversMap.TryGetValue(targetObjectID, out receivers))
                     {
+                        Logging.Warn("Found receivers list  = {0}", receivers.ToString());
                         result = true;
                     }
                 }
