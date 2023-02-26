@@ -183,6 +183,10 @@ namespace Pixeltheory.Messaging
             bool result = false;
             List<IMessageReceiver> receivers = null;
             MessageKey key;
+            foreach (MessageKey tempKey in this.messageKeyCache.Keys)
+            {
+                Logging.Warn(tempKey.messageFullName);
+            }
             if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
             {
                 Logging.Warn("Found messageNameFull key = {0}", key.ToString());
