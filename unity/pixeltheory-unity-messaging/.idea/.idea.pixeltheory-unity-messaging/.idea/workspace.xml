@@ -8,6 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24230079a46d42b19618a7e0fb7700a176c800/04/ae60a808/PackageInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24230079a46d42b19618a7e0fb7700a176c800/42/37887606/SettingsScope.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24230079a46d42b19618a7e0fb7700a176c800/69/bee17421/SettingsProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24230079a46d42b19618a7e0fb7700a176c800/6d/a1841afc/SerializedObject.cs" root0="SKIP_HIGHLIGHTING" />
@@ -127,7 +128,8 @@
       <workItem from="1676564291300" duration="68578000" />
       <workItem from="1677058212816" duration="21816000" />
       <workItem from="1677411018618" duration="240000" />
-      <workItem from="1677418233615" duration="1358000" />
+      <workItem from="1677418233615" duration="2155000" />
+      <workItem from="1677421615287" duration="6775000" />
     </task>
     <servers />
   </component>

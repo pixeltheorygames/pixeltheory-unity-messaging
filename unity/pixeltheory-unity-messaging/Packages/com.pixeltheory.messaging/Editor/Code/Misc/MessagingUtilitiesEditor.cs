@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Compilation;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using Pixeltheory.Debug;
-
+using UnityEditor.PackageManager.UI;
 using Assembly = System.Reflection.Assembly;
 using UnityAssembly = UnityEditor.Compilation.Assembly;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
@@ -93,23 +94,31 @@ namespace Pixeltheory.Messaging.Utilities
         internal static Type[] GetMessagingInterfaceTypes()
         {
             Assembly[] allAssemblies = System.AppDomain.CurrentDomain.GetAssemblies();
-            UnityAssembly[] playerAssemblies = CompilationPipeline.GetAssemblies(AssembliesType.Player);
+            UnityAssembly[] playerAssemblies = CompilationPipeline.GetAssemblies(AssembliesType.PlayerWithoutTestAssemblies);
+            Dictionary<string, UnityAssembly> unityAssembliesMap = new Dictionary<string, UnityAssembly>();
             List<Assembly> playerFilteredAssemblies = new List<Assembly>();
+            List<Assembly> finalAssemblyList = new List<Assembly>();
             List<Type> interfaceTypes = new List<Type>();
-            Dictionary<string, bool> unityAssemblyMap = new Dictionary<string, bool>();
             foreach (UnityAssembly unityAssembly in playerAssemblies)
             {
-                unityAssemblyMap.Add(unityAssembly.name, true);
+                unityAssembliesMap.Add(unityAssembly.name, unityAssembly);
             }
             foreach (Assembly assembly in allAssemblies)
             {
-                if (unityAssemblyMap.TryGetValue(assembly.GetName().Name, out bool exists))
+                if (unityAssembliesMap.TryGetValue(assembly.GetName().Name, out UnityAssembly unityAssembly))
                 {
-                    Logging.Warn(assembly.FullName);
                     playerFilteredAssemblies.Add(assembly);
                 }
             }
-            foreach (Assembly assembly in playerFilteredAssemblies)
+            foreach (Assembly playerAssembly in playerFilteredAssemblies)
+            {
+                PackageInfo packageInfo = PackageInfo.FindForAssembly(playerAssembly);
+                if (packageInfo == null || packageInfo.source == PackageSource.Embedded || packageInfo.source == PackageSource.Local)
+                {
+                    finalAssemblyList.Add(playerAssembly);
+                }
+            }
+            foreach (Assembly assembly in finalAssemblyList)
             {
                 Type[] assemblyTypes = assembly.GetTypes();
                 foreach (Type potentialType in assemblyTypes)
