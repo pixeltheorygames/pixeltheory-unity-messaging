@@ -111,6 +111,7 @@ namespace Pixeltheory.Messaging
                     messagingInterfaceKeys = new List<MessageKey>();
                 }
                 this.messageReceiverCache.Add(listener, messagingInterfaceKeys);
+                listenerMessageKeys = messagingInterfaceKeys;
             }
             
             foreach (MessageKey messageKey in listenerMessageKeys)
