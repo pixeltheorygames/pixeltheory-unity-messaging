@@ -18,7 +18,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Code/ITestMessagingTargetAll.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/ITestMessagingTargetSingle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/MessagingExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.pixeltheory.base@43ea112cb2/Runtime/Code/Classes/Concrete/Logging.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Editor/Code/Data/PixeltheoryMessagingSettings.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Editor/Code/Data/PixeltheoryMessagingSettingsProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Packages/com.pixeltheory.messaging/Runtime/Code/Attributes/MessagingTargetMultiple.cs" root0="FORCE_HIGHLIGHTING" />
@@ -127,6 +126,7 @@
       <workItem from="1676396090292" duration="21318000" />
       <workItem from="1676564291300" duration="68578000" />
       <workItem from="1677058212816" duration="21816000" />
+      <workItem from="1677411018618" duration="240000" />
     </task>
     <servers />
   </component>
