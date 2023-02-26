@@ -1,5 +1,5 @@
 // MessagingExtensions.cs
-// Auto-Generated 2/27/2023 3:03:53 AM
+// Auto-Generated 2/27/2023 3:26:35 AM
 using System.Collections.Generic;
 using Pixeltheory.Messaging;
 using Pixeltheory.Messaging.Tests;

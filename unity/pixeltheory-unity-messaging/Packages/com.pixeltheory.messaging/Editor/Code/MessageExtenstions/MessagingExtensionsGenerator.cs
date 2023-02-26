@@ -148,12 +148,11 @@ namespace Pixeltheory.Messaging.Utilities
                     outfile.Write(parameterInfo.Name);
                     firstParameter = false;
                 }
-
                 outfile.WriteLine(");");
                 tab.Remove(tab.Length - 1, 1);
                 outfile.WriteLine(tab + "}");
+                tab.Remove(tab.Length - 1, 1);
             }
-            tab.Remove(tab.Length - 1, 1);
             outfile.WriteLine(tab + "}");
         }
         
