@@ -105,6 +105,7 @@ namespace Pixeltheory.Messaging.Utilities
             {
                 if (unityAssemblyMap.TryGetValue(assembly.GetName().Name, out bool exists))
                 {
+                    Logging.Warn(assembly.FullName);
                     playerFilteredAssemblies.Add(assembly);
                 }
             }
