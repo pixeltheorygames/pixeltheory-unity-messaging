@@ -183,9 +183,9 @@ namespace Pixeltheory.Messaging
             bool result = false;
             List<IMessageReceiver> receivers = null;
             MessageKey key;
-            foreach (MessageKey tempKey in this.messageKeyCache.Keys)
+            foreach (String tempFullName in this.messageKeyCache.Keys)
             {
-                Logging.Warn(tempKey.messageFullName);
+                Logging.Warn(tempFullName);
             }
             if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
             {
