@@ -183,21 +183,13 @@ namespace Pixeltheory.Messaging
             bool result = false;
             List<IMessageReceiver> receivers = null;
             MessageKey key;
-            Logging.Warn(messageNameFull);
-            foreach (String tempFullName in this.messageKeyCache.Keys)
-            {
-                Logging.Warn(tempFullName);
-            }
             if (this.messageKeyCache.TryGetValue(messageNameFull, out key))
             {
-                Logging.Warn("Found messageNameFull key = {0}", key.ToString());
                 Dictionary<int, List<IMessageReceiver>> targetIdToMessageReceiversMap;
                 if (this.messageReceivers.TryGetValue(key, out targetIdToMessageReceiversMap))
                 {
-                    Logging.Warn("Found targetIdToMessageReceiversMap dictiornay  = {0}", targetIdToMessageReceiversMap.Keys.ToString());
                     if (targetIdToMessageReceiversMap.TryGetValue(targetObjectID, out receivers))
                     {
-                        Logging.Warn("Found receivers list  = {0}", receivers.ToString());
                         result = true;
                     }
                 }

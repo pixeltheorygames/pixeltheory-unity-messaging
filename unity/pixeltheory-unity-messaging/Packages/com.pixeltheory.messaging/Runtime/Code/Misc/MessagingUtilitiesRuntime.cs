@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Sirenix.Utilities;
+
 using MessageKey = Pixeltheory.Messaging.MessagingManager.MessageKey;
 
 
