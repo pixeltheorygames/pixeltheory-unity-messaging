@@ -1,9 +1,0 @@
-{
-    "name": "com.pixeltheory.base",
-    "version": "1.0.0",
-    "displayName": "Pixeltheory Unity Base Package",
-    "description": "This package provides base Unity scripts/classes that can be used in Unity projects, as well as debug functionality.",
-    "unity": "2020.3",
-    "keywords": ["Pixeltheory", "Base", "Debug", "Logger", "ObjectPool"],
-    "author": { "name": "Pixeltheory Games", "email": "unitypackages@pixeltheorygames.com", "url": "http://pixeltheorygames.com" }
-}
