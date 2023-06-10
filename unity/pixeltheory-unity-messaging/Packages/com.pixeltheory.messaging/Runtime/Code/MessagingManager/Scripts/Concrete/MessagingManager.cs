@@ -13,7 +13,7 @@ namespace Pixeltheory.Messaging
     public class MessagingManager : PixelBehaviour<MessagingManager>
     {
         #region Class
-        public const int MessagingManagerExecutionOrder = DataManager.DataManagerExecutionOrder + 1;
+        public const int MessagingManagerExecutionOrder = Int32.MinValue;
         #endregion //Class
 
         #region Instance
@@ -49,7 +49,7 @@ namespace Pixeltheory.Messaging
         protected override void Awake()
         {
             base.Awake();
-            Logging.Log(this.name + " - Initializing.");
+            PixelLog.Log(this.name + " - Initializing.");
             bool offlineCacheObjectExists = this.offlineCache != null;
             this.messageKeyCache = 
                 offlineCacheObjectExists && this.offlineCache.messageKeyCacheOffline != null ? 
@@ -64,7 +64,7 @@ namespace Pixeltheory.Messaging
 
         protected override void OnDestroy()
         {
-            Logging.Log(this.name + " - Shutting down.");
+            PixelLog.Log(this.name + " - Shutting down.");
             
             #if UNITY_EDITOR
             if (this.offlineCache != null && this.writeBackToOfflineCache)

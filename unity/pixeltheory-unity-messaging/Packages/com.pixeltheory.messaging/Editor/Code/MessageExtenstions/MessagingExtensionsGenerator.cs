@@ -22,7 +22,7 @@ namespace Pixeltheory.Messaging.Utilities
             if (Application.isPlaying)
             {
                 string messageFormat = "[{0}] Editor must be in edit mode to generate {1}.";
-                Logging.Warn(messageFormat, generatorName, eventExtensionsFilenameFull);
+                PixelLog.Warn(messageFormat, generatorName, eventExtensionsFilenameFull);
                 return false;
             }
             else

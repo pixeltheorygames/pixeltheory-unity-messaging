@@ -261,7 +261,7 @@ namespace Pixeltheory.Messaging.Tests
 		#endregion
 
 		#region TestInterfacePixelScriptableObjectParameter
-		public static void TestMethodOddScriptableObjectParameterEvent(this Pixeltheory.Messaging.MessagingManager messagingManager, Pixeltheory.PixelScriptableObject pixelScriptableObjectParameter)
+		public static void TestMethodOddScriptableObjectParameterEvent(this Pixeltheory.Messaging.MessagingManager messagingManager, Pixeltheory.PixelObject pixelScriptableObjectParameter)
 		{
 			List<TestInterfacePixelScriptableObjectParameter> messageListeners = messagingManager.GetRegisteredMessageListeners<TestInterfacePixelScriptableObjectParameter>("TestInterfacePixelScriptableObjectParameter.TestMethodOddScriptableObjectParameter", 0);
 			foreach (TestInterfacePixelScriptableObjectParameter listener in messageListeners)

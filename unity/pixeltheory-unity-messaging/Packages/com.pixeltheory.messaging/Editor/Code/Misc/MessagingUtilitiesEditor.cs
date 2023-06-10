@@ -34,16 +34,16 @@ namespace Pixeltheory.Messaging.Utilities
             if (saveFileSelectedPath == string.Empty)
             {
                 // User cancelled out of selecting a location
-                Logging.Warn("[MessagingManager] No location selected for {0}; exiting.", filenameFull);
+                PixelLog.Warn("[MessagingManager] No location selected for {0}; exiting.", filenameFull);
                 return null;
             }
             if (File.Exists(saveFileSelectedPath + Path.DirectorySeparatorChar + filenameFull))
             {
-                Logging.Log("[MessagingManager] Found existing file at selected location for {0}; overwriting.", filenameFull);
+                PixelLog.Log("[MessagingManager] Found existing file at selected location for {0}; overwriting.", filenameFull);
             }
             else
             {
-                Logging.Log("[MessagingManager] No existing file found at selected location for {0}; creating.", filenameFull);
+                PixelLog.Log("[MessagingManager] No existing file found at selected location for {0}; creating.", filenameFull);
             }
             return saveFileSelectedPath + Path.DirectorySeparatorChar + filenameFull;
         }

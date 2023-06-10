@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Pixeltheory.Messaging
 {
-    public class MessagingBehaviour<TypeComponent> : PixelBehaviour<TypeComponent>, IMessageReceiver
-        where TypeComponent : PixelBehaviour<TypeComponent>
+    public class MessagingBehaviour<TypeSelf> : PixelBehaviour<TypeSelf>, IMessageReceiver
+        where TypeSelf : PixelBehaviour<TypeSelf>
     {
         #region Fields
         #region Inspector
@@ -25,11 +25,11 @@ namespace Pixeltheory.Messaging
                     this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
                 if (this.messagingManager != null)
                 {
-                    this.messagingManager.RegisterForMessages<TypeComponent>(this);
+                    this.messagingManager.RegisterForMessages<TypeSelf>(this);
                 }
                 else
                 {
-                    Logging.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
+                    PixelLog.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace Pixeltheory.Messaging
         {
             if (this.messagingManager != null)
             {
-                this.messagingManager.DeregisterForMessages<TypeComponent>(this);   
+                this.messagingManager.DeregisterForMessages<TypeSelf>(this);   
             }
             base.OnDestroy();
         }
@@ -58,9 +58,9 @@ namespace Pixeltheory.Messaging
         #endregion //Methods
     }
 
-    public class MessagingBehaviour<TypeComponent, TypeRuntimeData> : PixelBehaviour<TypeComponent, TypeRuntimeData>, IMessageReceiver
-         where TypeComponent : PixelBehaviour<TypeComponent>
-         where TypeRuntimeData : PixelRuntimeData<TypeRuntimeData>
+    public class MessagingBehaviour<TypeSelf, TypeData> : PixelBehaviour<TypeSelf, TypeData>, IMessageReceiver
+         where TypeSelf : PixelBehaviour<TypeSelf>
+         where TypeData : PixelObject
      {
         #region Fields
         #region Inspector
@@ -80,11 +80,11 @@ namespace Pixeltheory.Messaging
                     this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
                 if (this.messagingManager != null)
                 {
-                    this.messagingManager.RegisterForMessages<TypeComponent>(this);
+                    this.messagingManager.RegisterForMessages<TypeSelf>(this);
                 }
                 else
                 {
-                    Logging.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
+                    PixelLog.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace Pixeltheory.Messaging
         {
             if (this.messagingManager != null)
             {
-                this.messagingManager.DeregisterForMessages<TypeComponent>(this);   
+                this.messagingManager.DeregisterForMessages<TypeSelf>(this);   
             }
             base.OnDestroy();
         }

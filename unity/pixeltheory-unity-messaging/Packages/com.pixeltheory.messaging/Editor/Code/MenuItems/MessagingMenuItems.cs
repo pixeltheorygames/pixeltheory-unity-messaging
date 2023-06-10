@@ -46,11 +46,11 @@ namespace Pixeltheory.Messaging.Utilities
             {
                 messagingExtensionsFileLocation.stringValue = messagingExtensionsFileFullpath;
                 messagingSettingsSerialized.ApplyModifiedPropertiesWithoutUndo();
-                Logging.Log("[MessagingManager] Successfully generated MessagingExtensions.cs.");
+                PixelLog.Log("[MessagingManager] Successfully generated MessagingExtensions.cs.");
             }
             else
             {
-                Logging.Error("[MessagingManager] Error generating MessagingExtensions.cs; check console output.");
+                PixelLog.Error("[MessagingManager] Error generating MessagingExtensions.cs; check console output.");
             }
         }
         

@@ -2,7 +2,7 @@ using Pixeltheory;
 
 
 
-public class TestRuntimeData : PixelRuntimeData<TestRuntimeData>
+public class TestRuntimeData : PixelObject
 {
     
 }

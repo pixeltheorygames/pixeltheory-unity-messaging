@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pixeltheory.Messaging
 {
-    public class PixeltheoryMessagingSettings : PixelScriptableObject
+    public class PixeltheoryMessagingSettings : PixelObject
     {
         #region Class
         #region Fields
@@ -32,7 +32,7 @@ namespace Pixeltheory.Messaging
             if (settings == null)
             {
                 Directory.CreateDirectory(PixeltheoryMessagingSettings.PixeltheoryMessagingSettingsAssetDirectory);
-                settings = PixelScriptableObject.CreateInstance<PixeltheoryMessagingSettings>();
+                settings = PixelObject.CreateInstance<PixeltheoryMessagingSettings>();
                 settings.messagingExtensionsNamespace = "";
                 settings.controlPanelNamespace = "";
                 settings.controlPanelEditorWindowTitle = "";

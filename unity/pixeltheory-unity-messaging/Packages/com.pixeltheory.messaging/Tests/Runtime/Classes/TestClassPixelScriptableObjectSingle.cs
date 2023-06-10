@@ -6,7 +6,7 @@ using Pixeltheory;
 using UnityEngine;
 
 [Serializable]
-public class TestClassPixelScriptableObjectSingle : PixelScriptableObject
+public class TestClassPixelScriptableObjectSingle : PixelObject
 {
     [SerializeField] private int[] integers;
     [SerializeField] private List<GameObject> gameObjects;

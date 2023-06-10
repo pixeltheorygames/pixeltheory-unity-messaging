@@ -13,7 +13,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 {
     public void TestMethodByteSignedParameter(sbyte signedByteParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -24,7 +24,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodByteUnsignedParameter(byte unsignedByteParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -35,7 +35,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodByteParameter(sbyte signedByteParam, byte unsignedByteParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with arguments {2} {3}",
             this.GetType().Name,
@@ -47,7 +47,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodShortSignedParameter(short signedShortParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -58,7 +58,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodShortUnsignedParameter(ushort unsignedShortParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -69,7 +69,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodShortParameter(short signedShortParam, ushort unsignedShortParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with arguments {2} {3}",
             this.GetType().Name,
@@ -81,7 +81,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodIntSignedParameter(int signedIntParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -92,7 +92,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodIntUnsignedParameter(uint unsignedIntParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -103,7 +103,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodIntParameter(int signedIntParam, uint unsignedIntParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with arguments {2} {3}",
             this.GetType().Name,
@@ -115,7 +115,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodLongSignedParameter(long signedLongParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -126,7 +126,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodLongUnsignedParameter(ulong unsignedLongParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -137,7 +137,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodLongParameter(long signedLongParam, ulong unsignedLongParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with arguments {2} {3}",
             this.GetType().Name,
@@ -149,7 +149,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodCharParameter(char charParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -160,7 +160,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodFloatParameter(float floatParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -171,7 +171,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodDoubleParameter(double doubleParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -182,7 +182,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodBoolParameter(bool boolParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -193,7 +193,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodEnumParameter(TestEnum enumParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -204,7 +204,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodStructParameter(TestStruct structParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -215,7 +215,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodStringParameter(string stringParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -226,7 +226,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodClassParameter(TestClass classPrameter)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -237,7 +237,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodIntArrayParameter(int[] arrayParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -248,7 +248,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodInheritance(Quaternion quaternionParam)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -259,7 +259,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodNoNamespaceNamespacedParameter(TestClassWithNamespace.TestClassWithNamespaceEnum testClassWithNamespaceEnum)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -270,7 +270,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodNoNamespaceRegularParameter(TestClassNoNamespace.TestClassNoNamespaceEnum testClassNoNamespaceEnum)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -281,7 +281,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodInNamespaceNamespacedParameter(TestClassWithNamespace.TestClassWithNamespaceEnum testClassWithNamespaceEnum)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -292,7 +292,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodInNamespaceRegularParameter(TestClassNoNamespace.TestClassNoNamespaceEnum testClassNoNamespaceEnum)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -303,7 +303,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodGameObjectParameter(GameObject gameObjectParameter)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -314,7 +314,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
     
     public void TestMethodMonoBehaviourParameter(MonoBehaviour monoBehaviourParameter)
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with argument {2}",
             this.GetType().Name,
@@ -325,7 +325,7 @@ public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, T
 
     public void TestMethodNoParameter()
     {
-        Logging.Log
+        PixelLog.Log
         (
             "[{0}] {1} received message with no arguments",
             this.GetType().Name,

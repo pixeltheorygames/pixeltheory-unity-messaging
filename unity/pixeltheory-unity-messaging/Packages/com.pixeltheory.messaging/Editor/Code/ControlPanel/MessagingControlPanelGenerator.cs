@@ -34,7 +34,7 @@ namespace Pixeltheory.Messaging.Utilities
             if (Application.isPlaying)
             {
                 string messageFormat = "[{0}] Editor must be in edit mode to generate {1}.";
-                Logging.Warn(messageFormat, generatorName, cpEditorScriptFilenameFull);
+                PixelLog.Warn(messageFormat, generatorName, cpEditorScriptFilenameFull);
                 return false;
             }
             else
@@ -155,7 +155,7 @@ namespace Pixeltheory.Messaging.Utilities
                                 {
                                     string format =
                                         "[{0}] Message {1} in interface {2} has invalid parameters; skipping.";
-                                    Logging.Warn
+                                    PixelLog.Warn
                                     (
                                         format,
                                         generatorName,
@@ -218,7 +218,7 @@ namespace Pixeltheory.Messaging.Utilities
                     outfile.Close();
                 }
 
-                Logging.Log
+                PixelLog.Log
                 (
                     "[{0}] Generated control panel editor script and saved to selected path.",
                     generatorName

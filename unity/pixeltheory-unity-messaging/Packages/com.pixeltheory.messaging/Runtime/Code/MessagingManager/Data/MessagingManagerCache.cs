@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Pixeltheory.Messaging
 {
     
-    public class MessagingManagerCache : PixelScriptableObject
+    public class MessagingManagerCache : PixelObject
     {
         #region Fields
         #region Insepctor

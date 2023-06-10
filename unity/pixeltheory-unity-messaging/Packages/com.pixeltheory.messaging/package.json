@@ -1,8 +1,8 @@
 {
      "name": "com.pixeltheory.messaging",
      "version": "1.0.0",
-     "displayName": "Pixeltheory Unity Messaging Package",
-     "description": "This package provides Unity scripts/classes for a messaging subsystem that can be used in Unity projects, such as MessagingBehaviour and MessagingManager.",
+     "displayName": "Pixeltheory Messaging",
+     "description": "This package provides Unity scripts/classes for a messaging subsystem that can be used in Unity projects.",
      "unity": "2020.3",
      "dependencies": { "com.pixeltheory.base" : "1.0.0" },
      "keywords": ["Pixeltheory", "MessagingBehaviour", "MessagingManager", "Messages", "Events"],
