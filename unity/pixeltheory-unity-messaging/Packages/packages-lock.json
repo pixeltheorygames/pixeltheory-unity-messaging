@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "147172bc04cf94db6fccd7155a5737bc176711d9"
+      "hash": "167edcd82849890cb499ca05d09314b4912e6464"
     },
     "com.pixeltheory.messaging": {
       "version": "file:com.pixeltheory.messaging",

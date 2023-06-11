@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 [Serializable]
-public class TestClassPixelBehaviourSingleton : PixelBehaviour<TestClassPixelBehaviourSingleton>
+public class TestClassPixelBehaviourSingleton : PixelBehaviour<TestClassPixelBehaviourSingleton, PixelObject>
 {
     
 }

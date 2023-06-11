@@ -1,48 +1,70 @@
-# Pixeltheory Unity Messaging Package #
+# Pixeltheory Messaging
+Messaging library for Unity games/applications. Currently there are two different messaging systems in 
+this package. The first is MessagingManager, which is deprecated and will be removed in a future update. 
+The second and highly recommended system is the PixelSocket system. Moving forward PixelSockets will be 
+updated and maintained.
+###
+### Installation
+Pick a protocol to use for downloading the package. SSH if you have already uploaded a public key to Github, 
+and can use SSH to access repositories. HTTPS if you would rather "Login with Github" in your browsewr rather 
+than upload a public key.
 
-Scripts and classes for a system wide messaging system in Unity.
+Copy one of the below links, depending on which protocol you have chosen:
+* SSH : ssh://git@github.com/pixeltheorygames/pixeltheory-unity-messaging.git?path=/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging
+* HTTPS : https:/<area>/github.com/pixeltheorygames/pixeltheory-unity-messaging.git?path=/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging
 
-## TO-DO
-Fix Message control panel generation (control panel namespace and title)
-Fix current unit tests and add more.
-Add offline cached MessagingKeys.
+Open up the PackageManager in the Unity Editor.
+![OpenPackageManagerUnityEditor.png](github%2FREADME_Images%2FOpenPackageManagerUnityEditor.png)
 
+Add the link you selected above to the PackageManager.
+![AddGitURLPackageManagerUnityEditor.png](github%2FREADME_Images%2FAddGitURLPackageManagerUnityEditor.png)
 
-### Install Instructions ###
+The package should now be added and available to use in your Unity project.
+###
+### Usage
+#### PixelSocket
+Inherits from PixelObject. Used for asset oriented message passing "sockets". Abstract class. Inherit, and 
+create an interface that can be used to enforce message reception. Message receiver who implement said Interface
+need to Bind and Unbind themselves to the socket in their OnEnable and OnDisable methods. Message senders need only
+call "Send" method, which is defined by the implementing concrete class. Implementing classes need to also add the
+"[CreateAssetMenu(fileName = "ExampleFilename", menuName = "Example/Create/Menu/Path"]" attribute to the concrete
+class.
+###
+#### PixelBehaviourSocketed
+Abstract class that inherits from PixelBehaviour. Has an inspector property called "prefabRootGameObject". This 
+GameObject's InstanceID can be used as a unique channel indentifier for all PixelBehaviourSocketed components in 
+a prefab, creating a local channel for any PixelSocket messages you want to send/receive. Inheriting classes can 
+access this unique channel identifier by using the property UniqueSocketChannel. In the case that a prefab root 
+GameObject is not set on a PixelBehaviourSocketed concrete implementation, UniqueSocketChannel will return the 
+InstanceID of the GameObject the PixelBehaviourSocketed is attached to.
+###
+#### PixelConstants
+Partial static class that stores constants used by this package. The class builds upon the partial class of the same 
+name in Pixeltheory Base package.
+###
+#### MessagingManager (DEPRECATED)
+A PixelBehaviour class that MessagingBehaviour components can register/unregister themselves to in order to receive 
+messages.
+###
+#### MessagingBehaviour (DEPRECATED)
+Inherits from PixelBehaviour. Auto-registers itself with the MessagingManager for any implemented messaging interfaces.
+Implement messaging interfaces to receive the message calls.
+###
+#### MessagingExtensionsGenerator (DEPRECATED)
+Editor script. Generates static message event methods that can be called from anywhere, as long as you have a reference to the MessagingManager 
+component.
+###
+#### MessagingExtensionsGenerator (DEPRECATED)
+Editor script. Generates editor panels that allow you to call MessagingManager events from the editor itself, as long as the editor is in Play mode.
+###
+### Known Issues
+1. MessagingExtensionsGenerator does not properly generate used namespaces.
+2. MessagingControlPanelGenerator does not properly generate control panel class namespace and MenuItem attribute.
+3. Unit tests for PixelSockets are non-existant.
+###
+####
+### To-do List
+1. Implement unit tests for PixelSocket.
+2. Create PixelSocket custom editor inspector class generator.
+3. Fully remove old MessagingManager system.
 
-Add the following line to your manifest.json file in your Unity project.
-
-> "com.pixeltheory.messaging" : "ssh://git@gitlab.com/pixeltheory/pixeltheory-unity-messaging.git#package"
-
-After installing the messaging package, you need to generate a stubbed MessagingExtensions.cs and MessagingControlPanel.cs. When doing so for the first time, the package will ask for locations for each of the above files. Subsequent generating will simply overwrite the current file in it's current location.
-
-
-
-### How do I use the Messaging subsystem? ###
-
-First, create an interface and tag it with the attribute "MessagingInterface". Go back to the Unity editor, and click "Pixeltheory->Messaging->Generate Messages Extensions file" in the top menu. Then implement the interface in any component that inherits from "MessagingBehaviour". You can fire the event from anywhere in the code by calling the interface name postfixed with "Event" in "MessagingManager", for example the event for the interface message "ExampleMessage(GameObject gameObject)" would be "messagingManagerReference.ExampleMessageEvent(exampleGameObject);". The messaging subsystem, consisting of the base "MessagingBehaviour" implementation and the "MessagingManager", and the events auto-generator editor script, will take care of the rest.
-
-You can stack interfaces by having an interface inherit another interface, i.e. "interface InterfaceOne : InterfaceTwo". As long as both interfaces are tagged with the "MessagingInterface" attribute, the sub-system will take care of the rest.
-
-If you implement a messaging interface and realize you do not need all messages defined in said inteface, you can tag the unnecessary method implmentations in your "MessagingBehaviour" inheriting component with the attribute "MessagingNOP". This will effectively stop registration of the method implementation with the MessagingManager.
-
-
-
-### Are there any gotchas/caveats I need to be aware of? ###
-
-Yes. 
-
-One, currently, as of Unity 2019.4, ulong (UInt64) is not supported as a parameter type for messaging. This is due to a bug in Unity when entering ulong values into the editor.
-
-Two, the editor scripts that auto-generate events can be a little brittle, due to the Unity editor having a rather complex hot-reloading feature. Anytime you get into a situation where the auto-generating code is not being cleared or regenerated through the editor, try to see if there are any code errors in the Unity console. Unity will stop compilation and asset reloading dead in it's tracks once it encounters a compilation error. I have included a menu item that allows you to generate a stubbed version of the message extensions, hopefully you can use this get around any compilation erros tha may result from changing any interfaces/message events by hand.
-
-
-
-### What's in this repository? ###
-
-As of 2021.02.02, a messaging system built on PixelBehaviourSingle called MessagingManager, an Editor script that auto-generates messaging events, and Editor script that auto-generates a control panel that can be used to fire messages from the editor, attributes for tagging messaging interfaces and methods, and MessagingBehaviour which should be the super class for all components that want to receive messages.
-
-
-### Who do I talk to? ###
-
-If you have any questions or problems with the files in this repository, please email gitlab@ellistalley.com.

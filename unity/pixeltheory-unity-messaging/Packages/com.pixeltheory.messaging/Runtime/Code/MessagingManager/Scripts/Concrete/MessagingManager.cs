@@ -10,7 +10,7 @@ using Pixeltheory.Messaging.Utilities;
 namespace Pixeltheory.Messaging
 {
     [DefaultExecutionOrder(MessagingManager.MessagingManagerExecutionOrder)]
-    public class MessagingManager : PixelBehaviour<MessagingManager>
+    public class MessagingManager : PixelBehaviour<MessagingManager, PixelObject>
     {
         #region Class
         public const int MessagingManagerExecutionOrder = Int32.MinValue;
