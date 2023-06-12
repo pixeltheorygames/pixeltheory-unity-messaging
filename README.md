@@ -10,7 +10,7 @@ and can use SSH to access repositories. HTTPS if you would rather "Login with Gi
 than upload a public key.
 
 Copy one of the below links, depending on which protocol you have chosen:
-* SSH : ssh://git@github.com/pixeltheorygames/pixeltheory-unity-messaging.git?path=/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging
+* SSH : ssh://git<area>@github.com/pixeltheorygames/pixeltheory-unity-messaging.git?path=/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging
 * HTTPS : https:/<area>/github.com/pixeltheorygames/pixeltheory-unity-messaging.git?path=/unity/pixeltheory-unity-messaging/Packages/com.pixeltheory.messaging
 
 Open up the PackageManager in the Unity Editor.
