@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Pixeltheory;
 using UnityEngine.Pool;
 
 
@@ -9,9 +8,9 @@ namespace Pixeltheory.Messaging
    {
       #region Fields
       #region Private
-      private Dictionary<int, Dictionary<int, TypeInterface>> channelToIDAndListenersMap
+      private readonly Dictionary<int, Dictionary<int, TypeInterface>> channelToIDAndListenersMap
          = new Dictionary<int, Dictionary<int, TypeInterface>>();
-      private Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection> channelToListenersCollectionMap
+      private readonly Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection> channelToListenersCollectionMap
          = new Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection>();
       #endregion //Private
       #endregion //Fields

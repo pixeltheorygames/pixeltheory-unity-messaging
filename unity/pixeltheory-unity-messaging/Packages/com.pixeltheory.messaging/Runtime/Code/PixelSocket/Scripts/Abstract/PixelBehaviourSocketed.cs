@@ -5,19 +5,28 @@ namespace Pixeltheory.Messaging
 {
     public abstract class PixelBehaviourSocketed<TypeSelf, TypeData> : PixelBehaviour<TypeSelf, TypeData>
         where TypeSelf : PixelBehaviourSocketed<TypeSelf, TypeData>
-        where TypeData : PixelObject
+        where TypeData : PixelBlackboard<TypeData>
     {
         #region Fields
-        #region Inspector
-        [Header("PixelBehaviourSocketed")]
-        [SerializeField] private GameObject prefabRootGameObject;
-        #endregion //Inspector
+        #region Private
+        private int uniqueSocketChannel;
+        #endregion //Private
         #endregion //Fields
 
         #region Properties
-        #region Protected
-        protected int UniqueSocketChannel => this.prefabRootGameObject?.GetInstanceID() ?? this.gameObject.GetInstanceID();
-        #endregion //Protected
+        #region Public
+        public int UniqueSocketChannel => this.uniqueSocketChannel;
+        #endregion //Public
         #endregion //Properties
+
+        #region Methods
+        #region Unity Messages
+        protected override void Awake()
+        {
+            base.Awake();
+            this.uniqueSocketChannel = this.GetInstanceID();
+        }
+        #endregion //Unity Messages
+        #endregion //Methods
     }
 }

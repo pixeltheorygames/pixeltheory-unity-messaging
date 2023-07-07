@@ -7,7 +7,7 @@ namespace Pixeltheory.Messaging
 {
     public abstract class MessagingBehaviour<TypeSelf, TypeData> : PixelBehaviour<TypeSelf, TypeData>, IMessageReceiver
         where TypeSelf : PixelBehaviour<TypeSelf, TypeData>
-        where TypeData : PixelObject
+        where TypeData : PixelBlackboard<TypeData>
     {
         #region Fields
         #region Inspector
@@ -21,7 +21,7 @@ namespace Pixeltheory.Messaging
         protected override void Awake()
         {
             base.Awake();
-            if (!base.isBeingDestroyed)
+            if (!base.IsBeingDestroyed)
             {
                 this.messagingManager = 
                     this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;

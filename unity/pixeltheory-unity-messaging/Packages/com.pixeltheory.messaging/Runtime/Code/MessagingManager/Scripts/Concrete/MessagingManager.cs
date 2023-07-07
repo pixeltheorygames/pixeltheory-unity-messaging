@@ -10,7 +10,7 @@ using Pixeltheory.Messaging.Utilities;
 namespace Pixeltheory.Messaging
 {
     [DefaultExecutionOrder(MessagingManager.MessagingManagerExecutionOrder)]
-    public class MessagingManager : PixelBehaviour<MessagingManager, PixelObject>
+    public class MessagingManager : MonoBehaviour
     {
         #region Class
         public const int MessagingManagerExecutionOrder = Int32.MinValue;
@@ -46,9 +46,8 @@ namespace Pixeltheory.Messaging
 
         #region Methods
         #region Unity Messages
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             PixelLog.Log(this.name + " - Initializing.");
             bool offlineCacheObjectExists = this.offlineCache != null;
             this.messageKeyCache = 
@@ -62,7 +61,7 @@ namespace Pixeltheory.Messaging
             this.messageReceivers = new Dictionary<MessageKey, Dictionary<int, List<IMessageReceiver>>>();
         }
 
-        protected override void OnDestroy()
+        protected void OnDestroy()
         {
             PixelLog.Log(this.name + " - Shutting down.");
             
@@ -80,7 +79,6 @@ namespace Pixeltheory.Messaging
             this.messageReceiverCache = null;
             this.messageReceivers.Clear();
             this.messageReceivers = null;
-            base.OnDestroy();
         }
         #endregion //Unity Messages
 

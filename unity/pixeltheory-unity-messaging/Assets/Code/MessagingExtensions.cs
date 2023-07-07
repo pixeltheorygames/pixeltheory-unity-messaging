@@ -249,17 +249,6 @@ namespace Pixeltheory.Messaging.Tests
 		}
 		#endregion
 
-		#region TestInterfacePixelBehaviourSingletonParameter
-		public static void TestMethodOddBehaviourSingletonParameterEvent(this Pixeltheory.Messaging.MessagingManager messagingManager, TestClassPixelBehaviourSingleton pixelBehaviourSingletonParameter)
-		{
-			List<TestInterfacePixelBehaviourSingletonParameter> messageListeners = messagingManager.GetRegisteredMessageListeners<TestInterfacePixelBehaviourSingletonParameter>("TestInterfacePixelBehaviourSingletonParameter.TestMethodOddBehaviourSingletonParameter", 0);
-			foreach (TestInterfacePixelBehaviourSingletonParameter listener in messageListeners)
-			{
-				listener.TestMethodOddBehaviourSingletonParameter(pixelBehaviourSingletonParameter);
-			}
-		}
-		#endregion
-
 		#region TestInterfacePixelScriptableObjectParameter
 		public static void TestMethodOddScriptableObjectParameterEvent(this Pixeltheory.Messaging.MessagingManager messagingManager, Pixeltheory.PixelObject pixelScriptableObjectParameter)
 		{
