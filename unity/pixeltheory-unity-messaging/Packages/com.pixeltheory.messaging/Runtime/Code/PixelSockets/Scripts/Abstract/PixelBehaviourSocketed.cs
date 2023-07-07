@@ -7,26 +7,10 @@ namespace Pixeltheory.Messaging
         where TypeSelf : PixelBehaviourSocketed<TypeSelf, TypeData>
         where TypeData : PixelBlackboard<TypeData>
     {
-        #region Fields
-        #region Private
-        private int uniqueSocketChannel;
-        #endregion //Private
-        #endregion //Fields
-
         #region Properties
         #region Public
-        public int UniqueSocketChannel => this.uniqueSocketChannel;
+        public int UniqueSocketChannel => this.GetInstanceID();
         #endregion //Public
         #endregion //Properties
-
-        #region Methods
-        #region Unity Messages
-        protected override void Awake()
-        {
-            base.Awake();
-            this.uniqueSocketChannel = this.GetInstanceID();
-        }
-        #endregion //Unity Messages
-        #endregion //Methods
     }
 }
