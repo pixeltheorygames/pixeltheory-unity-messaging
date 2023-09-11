@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.Pool;
 
@@ -6,8 +7,24 @@ namespace Pixeltheory.Messaging
 {
    public abstract class PixelSocket<TypeInterface> : PixelObject
    {
+      #region Class
+      #region Fields
+      #region Public
+      [Flags]
+      public enum HookTypeFlag
+      {
+         PreMessageHook,
+         PostMessageHook
+      }
+      #endregion //Public
+      #endregion //Fields
+      #endregion //Class
+
+      #region Instance
       #region Fields
       #region Private
+      private readonly Dictionary<int, Action> idToPreMessageHookActionMap = new Dictionary<int, Action>();
+      private readonly Dictionary<int, Action> idToPostMessageHookActionMap = new Dictionary<int, Action>();
       private readonly Dictionary<int, Dictionary<int, TypeInterface>> channelToIDAndListenersMap
          = new Dictionary<int, Dictionary<int, TypeInterface>>();
       private readonly Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection> channelToListenersCollectionMap
@@ -17,6 +34,40 @@ namespace Pixeltheory.Messaging
 
       #region Methods
       #region Public
+      public int AttachMessageHook(HookTypeFlag hookTypeFlag, Action callback)
+      {
+         int callbackID = callback.GetHashCode();
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
+         {
+            this.idToPreMessageHookActionMap[callbackID] = callback;
+         }
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
+         {
+            this.idToPostMessageHookActionMap[callbackID] = callback;
+         }
+         return callbackID;
+      }
+
+      public bool RemoveMessageHook(HookTypeFlag hookTypeFlag, int callbackID)
+      {
+         bool removed = false;
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
+         {
+            if (this.idToPreMessageHookActionMap.ContainsKey(callbackID))
+            {
+               removed |= this.idToPreMessageHookActionMap.Remove(callbackID);
+            }
+         }
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
+         {
+            if (this.idToPostMessageHookActionMap.ContainsKey(callbackID))
+            {
+               removed |= this.idToPostMessageHookActionMap.Remove(callbackID);
+            }
+         }
+         return removed;
+      }
+
       public void Bind(TypeInterface listener, int channel)
       {
          Dictionary<int, TypeInterface> idAndListeners;
@@ -74,6 +125,16 @@ namespace Pixeltheory.Messaging
       #endregion //Public
 
       #region Protected
+      protected Dictionary<int, Action>.ValueCollection GetPreMessageHooks()
+      {
+         return this.idToPreMessageHookActionMap.Values;
+      }
+
+      protected Dictionary<int, Action>.ValueCollection GetPostMessageHooks()
+      {
+         return this.idToPostMessageHookActionMap.Values;
+      }
+
       protected Dictionary<int, TypeInterface>.ValueCollection GetListenersCollection(int channel)
       {
          Dictionary<int, TypeInterface>.ValueCollection listeners;
@@ -88,5 +149,6 @@ namespace Pixeltheory.Messaging
       }
       #endregion //Protected
       #endregion //Method
+      #endregion
    }
 }
