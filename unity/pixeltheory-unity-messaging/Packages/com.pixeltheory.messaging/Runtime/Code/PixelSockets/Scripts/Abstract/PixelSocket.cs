@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine.Pool;
 
 
@@ -13,8 +14,8 @@ namespace Pixeltheory.Messaging
       [Flags]
       public enum HookTypeFlag
       {
-         PreMessageHook,
-         PostMessageHook
+         PreMessageHook = 1,
+         PostMessageHook = 2
       }
       #endregion //Public
       #endregion //Fields
@@ -23,8 +24,10 @@ namespace Pixeltheory.Messaging
       #region Instance
       #region Fields
       #region Private
-      private readonly Dictionary<int, Action> idToPreMessageHookActionMap = new Dictionary<int, Action>();
-      private readonly Dictionary<int, Action> idToPostMessageHookActionMap = new Dictionary<int, Action>();
+      private List<Func<Task>> preMessageHooks;
+      private List<Func<Task>> postMessageHooks;
+      private Dictionary<int, List<TypeInterface>> channelToListenersListMap;
+
       private readonly Dictionary<int, Dictionary<int, TypeInterface>> channelToIDAndListenersMap
          = new Dictionary<int, Dictionary<int, TypeInterface>>();
       private readonly Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection> channelToListenersCollectionMap
@@ -33,108 +36,112 @@ namespace Pixeltheory.Messaging
       #endregion //Fields
 
       #region Methods
-      #region Public
-      public int AttachMessageHook(HookTypeFlag hookTypeFlag, Action callback)
+      #region Unity Messages
+      private void OnEnable()
       {
-         int callbackID = callback.GetHashCode();
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
-         {
-            this.idToPreMessageHookActionMap[callbackID] = callback;
-         }
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
-         {
-            this.idToPostMessageHookActionMap[callbackID] = callback;
-         }
-         return callbackID;
+         this.preMessageHooks = ListPool<Func<Task>>.Get();
+         this.postMessageHooks = ListPool<Func<Task>>.Get();
+         this.channelToListenersListMap = DictionaryPool<int, List<TypeInterface>>.Get();
       }
 
-      public bool RemoveMessageHook(HookTypeFlag hookTypeFlag, int callbackID)
+      private void OnDisable()
       {
-         bool removed = false;
+         this.preMessageHooks.Clear();
+         ListPool<Func<Task>>.Release(this.preMessageHooks);
+         this.postMessageHooks.Clear();
+         ListPool<Func<Task>>.Release(this.postMessageHooks);
+         foreach (List<TypeInterface> channelListeners in this.channelToListenersListMap.Values)
+         {
+            channelListeners.Clear();
+            ListPool<TypeInterface>.Release(channelListeners);
+         }
+         this.channelToListenersListMap.Clear();
+      }
+      #endregion //Unity Messages
+      
+      #region Public
+      public void AttachMessageHook(HookTypeFlag hookTypeFlag, Func<Task> callback)
+      {
          if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
          {
-            if (this.idToPreMessageHookActionMap.ContainsKey(callbackID))
+            if (!this.preMessageHooks.Contains(callback))
             {
-               removed |= this.idToPreMessageHookActionMap.Remove(callbackID);
+               this.preMessageHooks.Add(callback);  
             }
          }
          if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
          {
-            if (this.idToPostMessageHookActionMap.ContainsKey(callbackID))
+            if (!this.postMessageHooks.Contains(callback))
             {
-               removed |= this.idToPostMessageHookActionMap.Remove(callbackID);
+               this.postMessageHooks.Add(callback);  
             }
          }
-         return removed;
+      }
+
+      public void RemoveMessageHook(HookTypeFlag hookTypeFlag, Func<Task> callback)
+      {
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
+         {
+            this.preMessageHooks.Remove(callback);
+         }
+         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
+         {
+            this.postMessageHooks.Remove(callback);
+         }
       }
 
       public void Bind(TypeInterface listener, int channel)
       {
-         Dictionary<int, TypeInterface> idAndListeners;
-         if (this.channelToIDAndListenersMap.TryGetValue(channel, out idAndListeners))
+         List<TypeInterface> currentListeners;
+         if (this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
          {
-            idAndListeners.Add(listener.GetHashCode(), listener);
+            currentListeners.Add(listener);
          }
          else
          {
-            idAndListeners = DictionaryPool<int, TypeInterface>.Get();
-            idAndListeners.Add(listener.GetHashCode(), listener);
-            this.channelToIDAndListenersMap.Add(channel, idAndListeners);
-            this.channelToListenersCollectionMap.Add(channel, idAndListeners.Values);
+            currentListeners = ListPool<TypeInterface>.Get();
+            currentListeners.Add(listener);
+            this.channelToListenersListMap.Add(channel, currentListeners);
          }
       }
 
       public void Unbind(TypeInterface listener, int channel)
       {
-         Dictionary<int, TypeInterface> idAndListeners;
-         if (this.channelToIDAndListenersMap.TryGetValue(channel, out idAndListeners))
+         List<TypeInterface> currentListeners;
+         if (this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
          {
-            idAndListeners.Remove(listener.GetHashCode());
-            if (idAndListeners.Count == 0)
+            currentListeners.Remove(listener);
+            if (currentListeners.Count == 0)
             {
-               this.channelToIDAndListenersMap.Remove(channel);
-               this.channelToListenersCollectionMap.Remove(channel);
-               DictionaryPool<int, TypeInterface>.Release(idAndListeners);
+               this.channelToListenersListMap.Remove(channel);
+               ListPool<TypeInterface>.Release(currentListeners);
             }
-         }
-         else
-         {
-            // If we get here, we are trying to unbind a listener that never bound itself.
-            // Something has gone wrong. We can use this opportunity to iterate through all
-            // channels and remove any empty listener lists. By doing so, hopefully we get
-            // the state of the channels and listeners back in sync with what is expected.
-            List<int> channelsToRemove = ListPool<int>.Get();
-            foreach (KeyValuePair<int, Dictionary<int, TypeInterface>> channelListenersPair in this.channelToIDAndListenersMap)
-            {
-               if (channelListenersPair.Value.Count == 0)
-               {
-                  channelsToRemove.Add(channelListenersPair.Key);
-               }
-            }
-            for (int i = 0; i < channelsToRemove.Count; i++)
-            {
-               int emptyChannel = channelsToRemove[i];
-               Dictionary<int, TypeInterface> emptyListeners = this.channelToIDAndListenersMap[emptyChannel];
-               this.channelToIDAndListenersMap.Remove(emptyChannel);
-               this.channelToListenersCollectionMap.Remove(emptyChannel);
-               DictionaryPool<int, TypeInterface>.Release(emptyListeners);
-            }
-            ListPool<int>.Release(channelsToRemove);
          }
       }
       #endregion //Public
 
       #region Protected
-      protected Dictionary<int, Action>.ValueCollection GetPreMessageHooks()
+      protected async Task PreMessageHooksAsync()
       {
-         return this.idToPreMessageHookActionMap.Values;
+         for (int i = this.preMessageHooks.Count - 1; i > -1; i--)
+         {
+            await this.preMessageHooks[i]();
+         }
       }
 
-      protected Dictionary<int, Action>.ValueCollection GetPostMessageHooks()
+      protected async Task PostMessageHooksAsync()
       {
-         return this.idToPostMessageHookActionMap.Values;
+         for (int i = this.postMessageHooks.Count - 1; i > -1; i--)
+         {
+            await this.postMessageHooks[i]();
+         }
       }
 
+      protected bool GetListeners(int channelID, out List<TypeInterface> listeners)
+      {
+         return this.channelToListenersListMap.TryGetValue(channelID, out listeners);
+      }
+      
       protected Dictionary<int, TypeInterface>.ValueCollection GetListenersCollection(int channel)
       {
          Dictionary<int, TypeInterface>.ValueCollection listeners;
