@@ -141,19 +141,6 @@ namespace Pixeltheory.Messaging
       {
          return this.channelToListenersListMap.TryGetValue(channelID, out listeners);
       }
-      
-      protected Dictionary<int, TypeInterface>.ValueCollection GetListenersCollection(int channel)
-      {
-         Dictionary<int, TypeInterface>.ValueCollection listeners;
-         if (!this.channelToListenersCollectionMap.TryGetValue(channel, out listeners))
-         {
-            Dictionary<int, TypeInterface> idToListenersMap = DictionaryPool<int, TypeInterface>.Get();
-            this.channelToIDAndListenersMap.Add(channel, idToListenersMap);
-            this.channelToListenersCollectionMap.Add(channel, idToListenersMap.Values);
-            listeners = idToListenersMap.Values;
-         }
-         return listeners;
-      }
       #endregion //Protected
       #endregion //Method
       #endregion
