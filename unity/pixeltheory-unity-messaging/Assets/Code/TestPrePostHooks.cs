@@ -23,12 +23,12 @@ public class TestPrePostHooks : MonoBehaviour,
     {
         this.returnPressedSocket.AttachMessageHook
         (
-            PixelSocket<IReturnPressed>.HookTypeFlag.PreMessageHook,
+            PixelSocket<IReturnPressed>.PixelSocketHookTypeFlag.PreMessageHook,
             this.WaitForSpacebar
         );
         this.returnPressedSocket.AttachMessageHook
         (
-            PixelSocket<IReturnPressed>.HookTypeFlag.PostMessageHook,
+            PixelSocket<IReturnPressed>.PixelSocketHookTypeFlag.PostMessageHook,
             this.RemovePreHook
         );
     }
@@ -79,12 +79,12 @@ public class TestPrePostHooks : MonoBehaviour,
     {
         this.returnPressedSocket.RemoveMessageHook
         (
-            PixelSocket<IReturnPressed>.HookTypeFlag.PreMessageHook,
+            PixelSocket<IReturnPressed>.PixelSocketHookTypeFlag.PreMessageHook,
             this.WaitForSpacebar
         );
         this.returnPressedSocket.RemoveMessageHook
         (
-            PixelSocket<IReturnPressed>.HookTypeFlag.PostMessageHook,
+            PixelSocket<IReturnPressed>.PixelSocketHookTypeFlag.PostMessageHook,
             this.RemovePreHook
         );
         return Task.CompletedTask;

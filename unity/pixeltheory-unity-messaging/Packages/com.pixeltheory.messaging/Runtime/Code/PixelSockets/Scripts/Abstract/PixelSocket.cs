@@ -6,13 +6,13 @@ using UnityEngine.Pool;
 
 namespace Pixeltheory.Messaging
 {
-   public abstract class PixelSocket<TypeInterface> : PixelObject
+   public class PixelSocket : PixelObject
    {
       #region Class
       #region Fields
       #region Public
       [Flags]
-      public enum HookTypeFlag
+      public enum PixelSocketHookTypeFlag
       {
          PreMessageHook = 1,
          PostMessageHook = 2
@@ -26,30 +26,98 @@ namespace Pixeltheory.Messaging
       #region Private
       private List<Func<Task>> preMessageHooks;
       private List<Func<Task>> postMessageHooks;
-      private Dictionary<int, List<TypeInterface>> channelToListenersListMap;
-
-      private readonly Dictionary<int, Dictionary<int, TypeInterface>> channelToIDAndListenersMap
-         = new Dictionary<int, Dictionary<int, TypeInterface>>();
-      private readonly Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection> channelToListenersCollectionMap
-         = new Dictionary<int, Dictionary<int, TypeInterface>.ValueCollection>();
       #endregion //Private
       #endregion //Fields
-
+      
       #region Methods
       #region Unity Messages
-      private void OnEnable()
+      protected virtual void OnEnable()
       {
          this.preMessageHooks = ListPool<Func<Task>>.Get();
          this.postMessageHooks = ListPool<Func<Task>>.Get();
-         this.channelToListenersListMap = DictionaryPool<int, List<TypeInterface>>.Get();
       }
 
-      private void OnDisable()
+      protected virtual void OnDisable()
       {
          this.preMessageHooks.Clear();
          ListPool<Func<Task>>.Release(this.preMessageHooks);
          this.postMessageHooks.Clear();
          ListPool<Func<Task>>.Release(this.postMessageHooks);
+      }
+      #endregion //Unity Messages
+      
+      #region Public
+      public void AttachMessageHook(PixelSocketHookTypeFlag pixelSocketHookTypeFlag, Func<Task> callback)
+      {
+         if (pixelSocketHookTypeFlag.HasFlag(PixelSocketHookTypeFlag.PreMessageHook))
+         {
+            if (!this.preMessageHooks.Contains(callback))
+            {
+               this.preMessageHooks.Add(callback);  
+            }
+         }
+         if (pixelSocketHookTypeFlag.HasFlag(PixelSocketHookTypeFlag.PostMessageHook))
+         {
+            if (!this.postMessageHooks.Contains(callback))
+            {
+               this.postMessageHooks.Add(callback);  
+            }
+         }
+      }
+
+      public void RemoveMessageHook(PixelSocketHookTypeFlag pixelSocketHookTypeFlag, Func<Task> callback)
+      {
+         if (pixelSocketHookTypeFlag.HasFlag(PixelSocketHookTypeFlag.PreMessageHook))
+         {
+            this.preMessageHooks.Remove(callback);
+         }
+         if (pixelSocketHookTypeFlag.HasFlag(PixelSocketHookTypeFlag.PostMessageHook))
+         {
+            this.postMessageHooks.Remove(callback);
+         }
+      }
+      #endregion //Public
+      
+      #region Protected
+      protected async Task PreMessageHooksAsync()
+      {
+         for (int i = this.preMessageHooks.Count - 1; i > -1; i--)
+         {
+            await this.preMessageHooks[i]();
+         }
+      }
+
+      protected async Task PostMessageHooksAsync()
+      {
+         for (int i = this.postMessageHooks.Count - 1; i > -1; i--)
+         {
+            await this.postMessageHooks[i]();
+         }
+      }
+      #endregion //Protected
+      #endregion //Methods
+      #endregion //Instance
+   }
+   
+   public abstract class PixelSocket<TypeInterface> : PixelSocket
+   {
+      #region Fields
+      #region Private
+      private Dictionary<int, List<TypeInterface>> channelToListenersListMap;
+      #endregion //Private
+      #endregion //Fields
+
+      #region Methods
+      #region Unity Messages
+      protected override void OnEnable()
+      {
+         base.OnEnable();
+         this.channelToListenersListMap = DictionaryPool<int, List<TypeInterface>>.Get();
+      }
+
+      protected override void OnDisable()
+      {
+         base.OnDisable();
          foreach (List<TypeInterface> channelListeners in this.channelToListenersListMap.Values)
          {
             channelListeners.Clear();
@@ -60,36 +128,6 @@ namespace Pixeltheory.Messaging
       #endregion //Unity Messages
       
       #region Public
-      public void AttachMessageHook(HookTypeFlag hookTypeFlag, Func<Task> callback)
-      {
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
-         {
-            if (!this.preMessageHooks.Contains(callback))
-            {
-               this.preMessageHooks.Add(callback);  
-            }
-         }
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
-         {
-            if (!this.postMessageHooks.Contains(callback))
-            {
-               this.postMessageHooks.Add(callback);  
-            }
-         }
-      }
-
-      public void RemoveMessageHook(HookTypeFlag hookTypeFlag, Func<Task> callback)
-      {
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PreMessageHook))
-         {
-            this.preMessageHooks.Remove(callback);
-         }
-         if (hookTypeFlag.HasFlag(HookTypeFlag.PostMessageHook))
-         {
-            this.postMessageHooks.Remove(callback);
-         }
-      }
-
       public void Bind(TypeInterface listener, int channel)
       {
          List<TypeInterface> currentListeners;
@@ -121,28 +159,11 @@ namespace Pixeltheory.Messaging
       #endregion //Public
 
       #region Protected
-      protected async Task PreMessageHooksAsync()
-      {
-         for (int i = this.preMessageHooks.Count - 1; i > -1; i--)
-         {
-            await this.preMessageHooks[i]();
-         }
-      }
-
-      protected async Task PostMessageHooksAsync()
-      {
-         for (int i = this.postMessageHooks.Count - 1; i > -1; i--)
-         {
-            await this.postMessageHooks[i]();
-         }
-      }
-
       protected bool GetListeners(int channelID, out List<TypeInterface> listeners)
       {
          return this.channelToListenersListMap.TryGetValue(channelID, out listeners);
       }
       #endregion //Protected
       #endregion //Method
-      #endregion
    }
 }
