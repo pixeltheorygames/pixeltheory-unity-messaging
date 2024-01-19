@@ -9,7 +9,7 @@ using TestNamespace;
 using Random = UnityEngine.Random;
 
 
-public class TestMessagingReceiver : MessagingBehaviour<TestMessagingReceiver, TestRuntimeData>, 
+public class TestMessagingReceiver : MessagingBehaviour<TestBlackboard, TestRuntimeData>, 
     TestInterfaceInheritance, TestInterfaceNoNamespace, TestInterfaceInNamespace, TestInterfaceNoParameter
 {
     public void TestMethodByteSignedParameter(sbyte signedByteParam)

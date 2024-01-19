@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Pixeltheory.Messaging
 {
-    public abstract class MessagingBehaviour<TypeSelf, TypeData> : PixelBehaviour<TypeSelf, TypeData>, IMessageReceiver
-        where TypeSelf : PixelBehaviour<TypeSelf, TypeData>
-        where TypeData : PixelBlackboard<TypeData>
+    public abstract class MessagingBehaviour<TypeBlackboard, TypeData> : PixelBehaviour<TypeBlackboard, TypeData>, IMessageReceiver
+        where TypeBlackboard : PixelBlackboard<TypeData>
+        where TypeData : PixelObject
     {
         #region Fields
         #region Inspector
@@ -21,29 +21,29 @@ namespace Pixeltheory.Messaging
         protected override void Awake()
         {
             base.Awake();
-            if (!base.IsBeingDestroyed)
-            {
-                this.messagingManager = 
-                    this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
-                if (this.messagingManager != null)
-                {
-                    this.messagingManager.RegisterForMessages<TypeSelf>(this);
-                }
-                else
-                {
-                    PixelLog.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
-                }
-            }
+            // if (!base.IsBeingDestroyed)
+            // {
+            //     this.messagingManager = 
+            //         this.messagingManager == null ? GameObject.FindObjectOfType<MessagingManager>() : this.messagingManager;
+            //     if (this.messagingManager != null)
+            //     {
+            //         this.messagingManager.RegisterForMessages<TypeSelf>(this);
+            //     }
+            //     else
+            //     {
+            //         PixelLog.Warn("[{0}] Couldn't find MessagingManager; did not register for messages.", this.name);
+            //     }
+            // }
         }
 
-        protected override void OnDestroy()
-        {
-            if (this.messagingManager != null)
-            {
-                this.messagingManager.DeregisterForMessages<TypeSelf>(this);   
-            }
-            base.OnDestroy();
-        }
+        // protected override void OnDestroy()
+        // {
+        //     // if (this.messagingManager != null)
+        //     // {
+        //     //     this.messagingManager.DeregisterForMessages<TypeSelf>(this);   
+        //     // }
+        //     // base.OnDestroy();
+        // }
         #endregion //Unity Messages
 
         #region IMessageReceiver
