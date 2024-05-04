@@ -1,11 +1,11 @@
+using Pixeltheory.Blackboard;
 using Pixeltheory.Debug;
 
 
 namespace Pixeltheory.Messaging
 {
-    public abstract class PixelBehaviourSocketed<TypeBlackboard, TypeData> : PixelBehaviour<TypeBlackboard, TypeData>
-        where TypeBlackboard : PixelBlackboard<TypeData>
-        where TypeData : PixelObject
+    public abstract class PixelBehaviourSocketed<BlackboardDataType> : PixelBehaviour<BlackboardDataType>
+        where BlackboardDataType : PixelBlackboardData
     {
         #region Properties
         #region Public

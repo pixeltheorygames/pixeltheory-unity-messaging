@@ -1,13 +1,13 @@
 ﻿using System;
+using Pixeltheory.Blackboard;
 using Pixeltheory.Debug;
 using UnityEngine;
 
 
 namespace Pixeltheory.Messaging
 {
-    public abstract class MessagingBehaviour<TypeBlackboard, TypeData> : PixelBehaviour<TypeBlackboard, TypeData>, IMessageReceiver
-        where TypeBlackboard : PixelBlackboard<TypeData>
-        where TypeData : PixelObject
+    public abstract class MessagingBehaviour<BlackboardDataType> : PixelBehaviour<BlackboardDataType>, IMessageReceiver
+        where BlackboardDataType : PixelBlackboardData
     {
         #region Fields
         #region Inspector

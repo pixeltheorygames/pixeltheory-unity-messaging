@@ -408,8 +408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f15a0a8f527413ebf92d8864cc7235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootTransform: {fileID: 0}
-  blackboard: {fileID: 0}
+  rootTransform: {fileID: 991054624}
+  blackboard: {fileID: 11400000, guid: bd7af7bf238f41c45ac4d44461e67175, type: 2}
   messagingManager: {fileID: 0}
 --- !u!114 &991054627
 MonoBehaviour:
@@ -423,5 +423,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e428f0ea3a3f314fad65a6e21293a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootTransform: {fileID: 0}
-  blackboard: {fileID: 0}
+  rootTransform: {fileID: 991054624}
+  blackboard: {fileID: 11400000, guid: bd7af7bf238f41c45ac4d44461e67175, type: 2}
