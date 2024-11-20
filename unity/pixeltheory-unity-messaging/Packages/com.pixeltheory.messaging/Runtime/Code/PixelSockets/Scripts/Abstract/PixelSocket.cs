@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 
 namespace Pixeltheory.Messaging
 {
-   public class PixelSocket : PixelObject
+   public abstract class PixelSocket : PixelObject
    {
       #region Class
       #region Fields
@@ -24,24 +24,18 @@ namespace Pixeltheory.Messaging
       #region Instance
       #region Fields
       #region Private
-      private List<Func<Task>> preMessageHooks;
-      private List<Func<Task>> postMessageHooks;
+      private List<Func<Task>> preMessageHooks = ListPool<Func<Task>>.Get();
+      private List<Func<Task>> postMessageHooks = ListPool<Func<Task>>.Get();
       #endregion //Private
       #endregion //Fields
       
       #region Methods
       #region Unity Messages
-      protected virtual void OnEnable()
-      {
-         this.preMessageHooks = ListPool<Func<Task>>.Get();
-         this.postMessageHooks = ListPool<Func<Task>>.Get();
-      }
-
-      protected virtual void OnDisable()
+      protected virtual void OnDestroy()
       {
          this.preMessageHooks.Clear();
-         ListPool<Func<Task>>.Release(this.preMessageHooks);
          this.postMessageHooks.Clear();
+         ListPool<Func<Task>>.Release(this.preMessageHooks);
          ListPool<Func<Task>>.Release(this.postMessageHooks);
       }
       #endregion //Unity Messages
@@ -103,27 +97,23 @@ namespace Pixeltheory.Messaging
    {
       #region Fields
       #region Private
-      private Dictionary<int, List<TypeInterface>> channelToListenersListMap;
+      private Dictionary<int, List<TypeInterface>> channelToListenersListMap 
+         = DictionaryPool<int, List<TypeInterface>>.Get();
       #endregion //Private
       #endregion //Fields
 
       #region Methods
       #region Unity Messages
-      protected override void OnEnable()
+      protected override void OnDestroy()
       {
-         base.OnEnable();
-         this.channelToListenersListMap = DictionaryPool<int, List<TypeInterface>>.Get();
-      }
-
-      protected override void OnDisable()
-      {
-         base.OnDisable();
          foreach (List<TypeInterface> channelListeners in this.channelToListenersListMap.Values)
          {
             channelListeners.Clear();
             ListPool<TypeInterface>.Release(channelListeners);
          }
          this.channelToListenersListMap.Clear();
+         DictionaryPool<int, List<TypeInterface>>.Release(this.channelToListenersListMap);
+         base.OnDestroy();
       }
       #endregion //Unity Messages
       
@@ -131,16 +121,12 @@ namespace Pixeltheory.Messaging
       public void Bind(TypeInterface listener, int channel)
       {
          List<TypeInterface> currentListeners;
-         if (this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
-         {
-            currentListeners.Add(listener);
-         }
-         else
+         if (!this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
          {
             currentListeners = ListPool<TypeInterface>.Get();
-            currentListeners.Add(listener);
             this.channelToListenersListMap.Add(channel, currentListeners);
          }
+         currentListeners.Add(listener);
       }
 
       public void Unbind(TypeInterface listener, int channel)
