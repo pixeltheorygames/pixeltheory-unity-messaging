@@ -118,7 +118,7 @@ namespace Pixeltheory.Messaging
       #endregion //Unity Messages
       
       #region Public
-      public void Bind(TypeInterface listener, int channel)
+      public virtual void Bind(TypeInterface listener, int channel)
       {
          List<TypeInterface> currentListeners;
          if (!this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
@@ -129,7 +129,7 @@ namespace Pixeltheory.Messaging
          currentListeners.Add(listener);
       }
 
-      public void Unbind(TypeInterface listener, int channel)
+      public virtual void Unbind(TypeInterface listener, int channel)
       {
          List<TypeInterface> currentListeners;
          if (this.channelToListenersListMap.TryGetValue(channel, out currentListeners))
@@ -145,7 +145,7 @@ namespace Pixeltheory.Messaging
       #endregion //Public
 
       #region Protected
-      protected bool GetListeners(int channelID, out List<TypeInterface> listeners)
+      protected virtual bool GetListeners(int channelID, out List<TypeInterface> listeners)
       {
          return this.channelToListenersListMap.TryGetValue(channelID, out listeners);
       }
