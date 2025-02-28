@@ -4,14 +4,14 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "TestRuntimeData", menuName = "Pixeltheory/Data/Blackboard/TestRuntimeData")]
-public class TestRuntimeData : PixelBlackboardData
+public class TestRuntimeData : PixelBlackboardModule
 {
-	public override void OnBlackboardLoad()
+	public override void OnBlackboardLoad(PixelBlackboard blackboard)
 	{
 		PixelLog.Log("TestRuntimeData - OnBlackboardDataLoad");
 	}
 	
-	public override void OnBlackboardUnload()
+	public override void OnBlackboardUnload(PixelBlackboard blackboard)
 	{
 		PixelLog.Log("TestRuntimeData - OnBlackboardDataUnload");
 	}

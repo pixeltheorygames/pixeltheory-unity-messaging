@@ -6,8 +6,7 @@ using UnityEngine;
 
 namespace Pixeltheory.Messaging
 {
-    public abstract class MessagingBehaviour<BlackboardDataType> : PixelBehaviour<BlackboardDataType>, IMessageReceiver
-        where BlackboardDataType : PixelBlackboardData
+    public abstract class MessagingBehaviour : PixelBehaviour, IMessageReceiver
     {
         #region Fields
         #region Inspector
