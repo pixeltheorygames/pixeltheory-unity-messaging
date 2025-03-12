@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Pixeltheory.Messaging
 {
-    public abstract class PixelBehaviourSocketed : PixelBehaviour
+    public abstract class PixelSocketBehaviour : PixelBehaviour
     {
         #region Fields
         #region Inspector
-        [Header("PixelBehaviourSocketed - Messaging Sockets Incoming")]
-        [SerializeField] private List<PixelSocket> socketsIncoming;
-        [Header("PixelBehaviourSocketed - Messaging Sockets Outgoing")]
-        [SerializeField] private List<PixelSocket> socketsOutgoing;
+        [Header("PixelSocketBehaviour")]
+        [SerializeField] private PixelBlackboardModuleSocketSwitch blackboardModuleSocketSwitch;
+        [SerializeField] private List<PixelSocket> pixelSocketsIncoming;
+        [SerializeField] private List<PixelSocket> pixelSocketsOutgoing;
         #endregion //Inspector
 
         #region Private
