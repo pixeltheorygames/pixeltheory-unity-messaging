@@ -1,5 +1,6 @@
 {
     "name": "Pixeltheory.Messaging.Editor",
+    "rootNamespace": "",
     "references": [
         "Pixeltheory.Base.Runtime",
         "Pixeltheory.Messaging.Runtime"
@@ -13,6 +14,22 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.pixeltheory.messaging",
+            "expression": "3.0",
+            "define": "PIXELTHEORY_MESSAGING_3"
+        },
+        {
+            "name": "com.pixeltheory.messaging",
+            "expression": "[2.0,3.0)",
+            "define": "PIXELTHEORY_MESSAGING_2"
+        },
+        {
+            "name": "com.pixeltheory.messaging",
+            "expression": "[0.0,2.0)",
+            "define": "PIXELTHEORY_MESSAGING_1"
+        }
+    ],
     "noEngineReferences": false
 }
