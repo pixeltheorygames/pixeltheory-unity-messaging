@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d6e5f73faab4b8896063734683d173, type: 3}
   m_Name: PixelBlackboard
   m_EditorClassIdentifier: 
-  defaultData: {fileID: 11400000, guid: 9f3e6b35c70316f4a8df3a4c6a4e25a0, type: 2}
-  sceneToDataList: []
-  sceneNameToDataList: []
+  blackboardModuleGroupList:
+  - sceneAsset: {fileID: 102900000, guid: 9fc0d4010bbf28b4594072e72b8655ab, type: 3}
+    sceneName: SampleScene
+    modules:
+    - {fileID: 11400000, guid: ed3a5d074b22bf8478df324325cc1419, type: 2}

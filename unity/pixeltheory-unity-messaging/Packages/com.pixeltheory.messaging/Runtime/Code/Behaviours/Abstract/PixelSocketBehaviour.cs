@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Pixeltheory.Blackboard.Modules;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 
 namespace Pixeltheory.Messaging
@@ -10,56 +14,47 @@ namespace Pixeltheory.Messaging
         #region Fields
         #region Inspector
         [Header("PixelSocketBehaviour")]
-        [SerializeField] private PixelBlackboardModuleSocketSwitch blackboardModuleSocketSwitch;
-        [SerializeField] private List<PixelSocket> pixelSocketsIncoming;
-        [SerializeField] private List<PixelSocket> pixelSocketsOutgoing;
+        [SerializeField] protected PixelBlackboardModuleSocketSwitch blackboardModuleSocketSwitch;
+        [SerializeField] protected List<PixelKeyValuePair<PixelSocket,UnityAction<Task>>> pixelSocketsIncoming;
+        [SerializeField] protected List<PixelSocket> pixelSocketsOutgoing;
         #endregion //Inspector
 
         #region Private
-        [NonSerialized] private int prefabRootSocketID;
-        [NonSerialized] private int gameObjectSocketID;
-        [NonSerialized] private int behaviourSocketID;
+        [NonSerialized] private int messagingID;
         #endregion //Private
         #endregion //Fields
         
         #region Properties
         #region Public
-        public int UniquePrefabRootSocketID
+        public int MessagingID => this.messagingID;
+        #endregion //Public
+        #endregion //Properties
+
+        #region Methods
+        #region Unity Messages
+        protected override void Awake()
         {
-            get
+            base.Awake();
+            Assert.IsNotNull(this.blackboardModuleSocketSwitch);
+            this.messagingID = this.GetInstanceID();
+        }
+
+        protected void OnEnable()
+        {
+            foreach (PixelKeyValuePair<PixelSocket,UnityAction<Task>> socketHandler in this.pixelSocketsIncoming)
             {
-                if (this.prefabRootSocketID == 0)
-                {
-                    this.prefabRootSocketID = this.PrefabRootTransform.GetInstanceID();
-                }
-                return this.prefabRootSocketID;
+                //this.blackboardModuleSocketSwitch.RegisterSocket(socketHandler.Key, this.messagingID, socketHandler.Value);
             }
         }
 
-        public int UniqueGameObjectSocketID
+        protected void OnDisable()
         {
-            get
+            foreach (PixelKeyValuePair<PixelSocket,UnityAction<Task>> socketHandler in this.pixelSocketsIncoming)
             {
-                if (this.gameObjectSocketID == 0)
-                {
-                    this.gameObjectSocketID = this.gameObject.GetInstanceID();
-                }
-                return this.gameObjectSocketID;
+                //this.blackboardModuleSocketSwitch.DeregisterSocket(socketHandler.Key, this.messagingID);
             }
         }
-        
-        public int UniqueBehaviourSocketChannel
-        {
-            get
-            {
-                if (this.behaviourSocketID == 0)
-                {
-                    this.behaviourSocketID = this.GetInstanceID();
-                }
-                return this.behaviourSocketID;
-            }
-        }
-        #endregion //Public
-        #endregion //Properties
+        #endregion //Unity Messages
+        #endregion //Methods
     }
 }
