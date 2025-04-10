@@ -1,7 +1,9 @@
 {
     "name": "Pixeltheory.Messaging.Runtime",
+    "rootNamespace": "",
     "references": [
-        "Pixeltheory.Base.Runtime"
+        "Pixeltheory.Base.Runtime",
+        "Pixeltheory.Base.Shared"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

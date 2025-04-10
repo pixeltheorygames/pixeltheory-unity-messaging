@@ -1,5 +1,5 @@
 {
-    "name": "Pixeltheory.Messaging.Editor",
+    "name": "Pixeltheory.Messaging.Tests.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:fd0d817cb7eed4de48dfe5aa38b0e275",
