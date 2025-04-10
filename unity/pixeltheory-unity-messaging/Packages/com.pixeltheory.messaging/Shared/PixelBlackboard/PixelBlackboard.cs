@@ -14,7 +14,7 @@ namespace Pixeltheory.Blackboard
         
         #region Properties
         #region Public
-        public SocketSwitchboardModule SocketSwitchboard => this.socketSwitchboard;
+        public SocketSwitchboardModule Switchboard => this.socketSwitchboard;
         #endregion //Public
         #endregion //Properties
     }
